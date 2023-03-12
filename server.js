@@ -5,11 +5,21 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieSession = require('cookie-session');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
 
 app.set('view engine', 'ejs');
+
+
+app.use(cookieSession({
+  name: 'session',
+  keys: ['test'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}));
 
 // Load the logger first so all (static) HTTP requests are logged to STDOUT
 // 'dev' = Concise output colored by response status for development use.
@@ -32,12 +42,22 @@ const userApiRoutes = require('./routes/users-api');
 const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 
+const listsApiRoutes = require('./routes/lists-api')
+const loginRoutes = require('./routes/login')
+
+
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
 // Note: Endpoints that return data (eg. JSON) usually start with `/api`
 app.use('/api/users', userApiRoutes);
 app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
+
+app.use('/api/lists', listsApiRoutes);
+app.use('/login', loginRoutes);
+
+
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
@@ -48,6 +68,8 @@ app.get('/', (req, res) => {
   res.render('index');
 });
 
+
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
