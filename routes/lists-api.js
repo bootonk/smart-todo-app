@@ -10,17 +10,19 @@ const router  = express.Router();
 const userQueries = require('../db/queries/todos');
 
 // GET api/lists : show all lists by user
-router.get('/', (req, res) => {
+router.get('/:category', (req, res) => {
+  console.log(req.body)
   user_id = req.session.user_id;
-  category_id = 2;
+  category_id = req.params.category
+  console.log(category_id);
   userQueries.getActiveTodosByCategory(user_id, category_id)
     .then(lists => {
-      res.json({ lists });
+      res.json(lists);
     })
     .catch(err => {
       res
         .status(500)
-        .json({ error: err.message });git 
+        .json({ error: err.message });
     });
   // res.send("see all lists by user")
 
@@ -29,7 +31,7 @@ router.get('/', (req, res) => {
 // POST api/lists : add new todo
 router.post('/', (req, res) => {
   user_id = req.session.user_id;
-  userQueries.addTodo(user_id, category_id, name)
+  userQueries.addTodo(user_id, category_id, todo_name)
     .then(todo => {
       res.json({ todo });
     })
