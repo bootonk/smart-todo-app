@@ -1,8 +1,8 @@
 const db = require('../connection');
 
-const loginDefaultUser = () => {
-  const values = [];
-  return db.query('SELECT * FROM users WHERE user_id = 1;', values)
+const getUserByEmail = (email) => {
+  const values = [`${email}`];
+  return db.query('SELECT * FROM users WHERE email = $1;', values)
     .then(data => {
       return data.rows;
     });
@@ -10,4 +10,4 @@ const loginDefaultUser = () => {
 
 
 
-module.exports = { loginDefaultUser };
+module.exports = { getUserByEmail };
