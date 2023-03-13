@@ -1,7 +1,7 @@
 #categories {
-  width: 80vh;
+  display: block;
+  width: 40%;
+  text-align: left;
+  margin: 10px auto;
 }
 
-.tab-body {
-  list-style-type: none;
-}

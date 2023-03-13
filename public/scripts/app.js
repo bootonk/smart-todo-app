@@ -1,8 +1,8 @@
 // Client facing scripts here
+const databaseAutoComplete = require('autoComplete.js');
 
 
-
-$(function () {
+$(function() {
 
   console.log("app.js running");
 
@@ -10,23 +10,23 @@ $(function () {
   $('#categories').tabs();
 
   //create a new element for todo
-const createTodoElement = (todo) => {
-  let $todo = $(`
+  const createTodoElement = (todo) => {
+    let $todo = $(`
   <li>
     <input id="checkbox-1" type="checkbox">
     <label for="checkbox-1">${todo.name}<span class="box"></span></label>
   </li>
-`)
-  return $todo;
-}
+`);
+    return $todo;
+  };
 
   //render Todos
   const renderTodos = (database) => {
     $("#tab-1").empty();
-      database.forEach(todo => {
-        $("#tab-1").append(createTodoElement(todo))
-      });
-  }
+    database.forEach(todo => {
+      $("#tab-1").append(createTodoElement(todo));
+    });
+  };
 
   // const renderTodos = function (todos) {
   //   const $newTodo = $('#inputText');
@@ -55,9 +55,16 @@ const createTodoElement = (todo) => {
       $('#inputText').val('');
       loadTodos();
     });
+
+    
+    //auto complete
+    $("#inputText").autocomplete({
+      source: databaseAutoComplete
+    });
+
   });
 
-    // const database = [
+  // const database = [
   //   {
   //   id: 1,
   //   user_id: 1,
@@ -100,7 +107,7 @@ const createTodoElement = (todo) => {
   // });
 
 
-    loadTodos();
+  loadTodos();
 });
 
 
