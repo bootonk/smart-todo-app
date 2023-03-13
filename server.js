@@ -44,6 +44,8 @@ const usersRoutes = require('./routes/users');
 
 const listsApiRoutes = require('./routes/lists-api')
 const loginRoutes = require('./routes/login')
+const logoutRoutes = require('./routes/logout')
+
 
 
 // Mount all resource routes
@@ -55,6 +57,7 @@ app.use('/users', usersRoutes);
 
 app.use('/api/lists', listsApiRoutes);
 app.use('/login', loginRoutes);
+app.use('/logout', logoutRoutes);
 
 
 

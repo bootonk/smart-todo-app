@@ -7,41 +7,43 @@
 
 const express = require('express');
 const router  = express.Router();
+const userQueries = require('../db/queries/todos');
 
-//NEED TO CHECK THE FOLDER KATE CREATED
-const userQueries = require('../db/queries/users');
-
-// GET api/lists : show all list by user
+// GET api/lists : show all lists by user
 router.get('/', (req, res) => {
-  // userQueries.getAllListsByUser()
-  //   .then(lists => {
-  //     res.json({ lists });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
-  res.send("see all lists by user")
+  user_id = req.session.user_id;
+  category_id = 2;
+  userQueries.getActiveTodosByCategory(user_id, category_id)
+    .then(lists => {
+      res.json({ lists });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });git 
+    });
+  // res.send("see all lists by user")
 
 });
 
 // POST api/lists : add new todo
 router.post('/', (req, res) => {
-  // userQueries.AddTodo()
-  //   .then(todo => {
-  //     res.json({ todo });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
+  user_id = req.session.user_id;
+  userQueries.addTodo(user_id, category_id, name)
+    .then(todo => {
+      res.json({ todo });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 
 });
 
 // POST api/lists/:id/update
 router.get('/:id/update', (req, res) => {
+  user_id = req.session.user_id;
   // userQueries.updateTodo()
   //   .then(todo => {
   //     res.json({ todo });
@@ -55,15 +57,16 @@ router.get('/:id/update', (req, res) => {
 
 // POST api/lists/:id/delete
 router.get('/:id/update', (req, res) => {
-  // userQueries.deleteTodo()
-  //   .then(todo => {
-  //     res.json({ todo });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
+  user_id = req.session.user_id;
+  userQueries.deleteTodo(user_id, id)
+    .then(todo => {
+      res.json({ todo });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 
