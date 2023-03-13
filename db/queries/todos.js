@@ -94,7 +94,8 @@ const deleteTodo = () => {
 
 module.exports = {
   getAllListsByUsers,
-  getActiveTodosByCategory, getCompleteTodosByCategory,
+  getActiveTodosByCategory,
+  getCompleteTodosByCategory,
   getCategoryTodoCount,
   sortActiveTodosOldest,
   sortActiveTodosNewest,
