@@ -1,6 +1,30 @@
 // See: https://sass-lang.com/
 
-body,
 html {
-  margin: 0;
+  box-sizing: border-box;
+  font-family: variables.$source-sans-font, variables.$page-font;
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+
+body {
+  color: #545149;
+  background-color: #f4f1ec;
+  font-size: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 90%;
+  margin: 10hv auto;
+}
+
