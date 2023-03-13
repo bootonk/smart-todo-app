@@ -83,7 +83,7 @@ const updateTodoStatus = (user_id, id) => {
   });
 };
 
-const deleteTodo = () => {
+const deleteTodo = (user_id, id) => {
   const values = [`${user_id}`, `${id}`];
   return db.query('DELETE FROM todos WHERE user_id = $1 AND id = $2;', values)
   .then(data => {
