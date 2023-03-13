@@ -22,7 +22,6 @@
     "pg": "^8.5.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.10",
-    "sass": "^1.58.3"
+    "nodemon": "^2.0.10"
   }
 }
