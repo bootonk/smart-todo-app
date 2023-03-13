@@ -20,13 +20,7 @@ const createTodoElement = (todo) => {
   return $todo;
 }
 
-  //render Todos
-  const renderTodos = (database) => {
-    $("#tab-1").empty();
-      database.forEach(todo => {
-        $("#tab-1").append(createTodoElement(todo))
-      });
-  }
+
 
   // const renderTodos = function (todos) {
   //   const $newTodo = $('#inputText');
@@ -38,13 +32,28 @@ const createTodoElement = (todo) => {
   //   }
   // };
 
-
+  // //render Todos
+  // const renderTodos = (database) => {
+  //   $("#tab-1").empty();
+  //     database.forEach(todo => {
+  //       $("#tab-1").append(createTodoElement(todo))
+  //     });
+  // }
 
   //load Todos by category
   const loadTodos = () => {
-    $.get('api/lists/2', (todos) => {
-      renderTodos(todos);
-    });
+
+    for(let i=1; i <= 5; i++) {
+      $.get(`api/lists/${i}`, (todos) => {
+        // renderTodos(todos);
+        $(`#tab-${i}`).empty();
+        todos.forEach(todo => {
+          $(`#tab-${i}`).append(createTodoElement(todo))
+        });
+      });
+
+    }
+    
   };
 
   //post input field
