@@ -3,10 +3,13 @@
   width: 100%;
   font-family: "Bungee";
   justify-content: space-between;
-  margin: 20px 40px;
   font-size: 24px;
+  padding: 15px;
+  background-color: rgb(147, 114, 114);
+  z-index: 1;
 }
 
 .nav-login {
   margin-right: 80px;
 }
+

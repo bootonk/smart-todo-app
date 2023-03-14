@@ -1,3 +1,17 @@
+/* main {
+  width:90%;
+  background-color: #c6beb0;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 9%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+}
+
+
 body {
   display: flex;
   flex-direction: column;
@@ -7,3 +21,4 @@ body {
   background: #a3d0db;
   background: linear-gradient(227deg, #a3d0db 0%, #a3b0db 20%, #a3addb 34%, #a3dbd0 59%, #a3d0db 74%, #a3d0db 100%);
 }
+ */

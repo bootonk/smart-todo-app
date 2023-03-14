@@ -1,14 +1,112 @@
 #categories {
   display: block;
-  width: 40%;
+  width:50%;
   text-align: left;
   margin: 10px auto;
+  background-color: transparent;
+  border: none;
+  z-index: 0;
+
 }
 
-#uncategories {
-  display: block;
-  width: 50%;
-  text-align: left;
-  margin: 40px auto;
+/* Set background colors for tabs */
+#categories ul li:nth-child(1) a {
+  background-color: #cf92af
+  
 }
+#categories ul li:nth-child(2) a {
+  background-color: #e4b1af
+}
+#categories ul li:nth-child(3) a {
+  background-color: #e5d1bd
+}
+#categories ul li:nth-child(4) a {
+  background-color:#eaeace
+}
+
+/* Set background colors for tab contents */
+#tab-1.ui-tabs-panel {
+  background-color: #FDF6FF;}
+#tab-2.ui-tabs-panel {
+  background-color: #FDF6FF;}
+#tab-3.ui-tabs-panel {
+  background-color: #FDF6FF;}
+#tab-4.ui-tabs-panel {
+  background-color: #FDF6FF;}
+
+
+/* Set active tab background color for each tab
+#categories .ui-tabs-active:nth-child(1) a {
+  background-color: #AA97CA;
+}
+#categories .ui-tabs-active:nth-child(2) a {
+  background-color: #AA97CA;
+}
+#categories .ui-tabs-active:nth-child(3) a {
+  background-color:  #AA97CA;
+}
+#categories .ui-tabs-active:nth-child(4) a {
+  background-color: #AA97CA;
+} */
+
+
+#uncategorized {
+  /* border: 2px solid black; */
+  display: flex;
+  flex-direction: column;
+  width:50%;
+  text-align: left;
+  margin: 10px auto;
+  background-color:  #FDF6FF;
+  font-size: 20px;
+
+  
+}
+
+.todo-uncategorized {
+  display: flex;
+  height: 40px;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 18px;
+}
+
+.uncategorized-buttons-container {
+  display: flex;
+  margin-right: 10%;
+  width: 14%;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.delete {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.edit {
+  background-color: green;
+  color: rgb(255, 255, 255);
+}
+
+#uncategorized a {
+
+  background-color: #e8cecc;
+  color: #736e6e;
+}
+
+#myCheckbox1{
+  position: relative;
+  margin-left: 24px;
+  margin-right: 12px;
+}
+
+.form-check-label {
+  width: 40%;
+}
+
+
+
+
+
 
