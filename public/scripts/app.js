@@ -54,28 +54,33 @@ $(function () {
   $('#form-input').on('submit', function (event) {
     event.preventDefault();
     let todoName = $('#inputText').val();
-    let category_id = 2;
+    let category_id = 0;
 
     $.post('/api/lists', { todo_name: todoName, category_id: category_id })
 
       .then((data) => {
+        // update category count & clear form
+        categoryCounter();
+        $('#inputText').val('');
+
         // add the new todo item to the DOM
         let $todoItem = createTodoElement(data);
         $(`#tab-${category_id}`).append($todoItem);
-        $('#inputText').val('');
-        categoryCounter();
+
+        // show tab for the category that was added to
+        const tabLoad = (data.category_id - 1);
+        console.log('tabload:', tabLoad);
+        $(`#categories`).tabs({
+          active: tabLoad
+        });
 
         // reload todos to show new item without refresh
         loadTodos();
 
-        // show the category that was added to
-        $(`#tab-${category_id}`).trigger('click');
       })
   });
 
   // delete new todo
-
-
 
   loadTodos();
   $('.delete').click(function () {

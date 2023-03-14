@@ -12,11 +12,16 @@ const apiCalls = function(searchTodo) {
         continue;
       }
 
-      if (result === 'fashion' || result === 'sporting goods' || result === 'accessories') {
-        category_id = 4;
+      // for Buy category
+      const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning']
 
-      } else if (result === 'restaurant' || result === 'gourmet' || result === 'italian' || result === 'vegan' || result === 'mexican') {
+      // for Eat category
+      const eatResults = ['restaurants', 'food', 'gourmet', 'italian', 'vegan', 'mexican', 'burgers']
+
+      if (buyResults.includes(result)) {
         category_id = 3;
+      } else if (eatResults.includes(result)) {
+        category_id = 4;
       }
     }
 
@@ -68,5 +73,20 @@ return axios
     console.error("Cannot find Yelp Business");
   });
 }
+
+// const callGoogleBooks = function(searchTodo) {
+//   const apiKey = process.env.API_GOOGLE_BOOKS;
+//   const url = `https://www.googleapis.com/books/v1/volumes?q="${searchTodo}"&key="${apiKey}"`
+
+//   return axios.get(url)
+//   .then(function (response) {
+//     console.log(response.data);
+//     return (response.data);
+//   })
+//   .catch(function(error) {
+//     console.error(error);
+//   });
+// };
+
 
 module.exports = { apiCalls };
