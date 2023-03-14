@@ -13,4 +13,4 @@ const databaseAutoComplete = [
 ];
 
 
-exports.databaseAutoComplete = databaseAutoComplete;
+module.exports = databaseAutoComplete;

@@ -1,5 +1,4 @@
 // Client facing scripts here
-// const databaseAutoComplete = require('autoComplete.js');
 
 
 $(function () {
@@ -12,12 +11,12 @@ $(function () {
   //create a new element for todo
   const createTodoElement = (todo) => {
     let $todo = $(`
-  <li>
+  <div>
     <input id="checkbox-1" type="checkbox">
     <label for="checkbox-1">${todo.name}<span class="box"></span></label>
     <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
     <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
-  </li>
+  </div>
 `)
     return $todo;
   }
@@ -67,6 +66,7 @@ $(function () {
     // $("#inputText").autocomplete({
     //   source: databaseAutoComplete
     // });
+
   //add count to category tab
   const categoryCounter = () => {
     for (let i = 1; i <= 4; i++) {
