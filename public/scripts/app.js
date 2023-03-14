@@ -32,7 +32,7 @@ $(function() {
           $(`#tab-${i}`).append(createTodoElement(todo));
           $(`#${todo.id}`).click(function() {
             $(`.${todo.id}`).hide("slide", 1000);
-            $(`#${todo.id}`).text(`${todo.id}-delete`); //
+            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete
           });
         });
       });
@@ -50,8 +50,6 @@ $(function() {
     });
 
     
-
-
     //add count to category tab
     const categoryCounter = () => {
       for (let i = 1; i <= 4; i++) {
@@ -79,14 +77,8 @@ $(function() {
         });
     });
 
-    // delete new todo
 
-  
-  
     loadTodos();
-    $('.delete').click(function() {
-      alert("Handler for .click() called.");
-    });
     categoryCounter();
   
 
@@ -109,6 +101,10 @@ $(function() {
   $("#inputText").autocomplete({
     source: databaseAutoComplete
   });
+
+  //Edit
+  
+
 });
   
 
