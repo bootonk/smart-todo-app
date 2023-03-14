@@ -40,33 +40,6 @@ $(function () {
     }
   };
 
-  //post input field
-  $('#form-input').on('submit', function(e) {
-    e.preventDefault();
-    let input = $('#form-input').serialize();
-    $.post('/lists', input, () => {
-      $('#inputText').val('');
-      loadTodos();
-    });
-
-    
-    //auto complete
-    // const databaseAutoComplete = [
-    //   'Love in the Time of Cholera',
-    //   'To Kill a Mockingbird',
-    //   'The Great Gatsby',
-    //   'The Godfather',
-    //   'Lord of the Rings',
-    //   'Forrest Gump',
-    //   'The Matrix',
-    //   'Silk Sleep Mask',
-    //   'Silk Slippers',
-    //   'Silk Robe',
-    //   'Alphabet Soup',
-    // ];
-    // $("#inputText").autocomplete({
-    //   source: databaseAutoComplete
-    // });
   //add count to category tab
   const categoryCounter = () => {
     for (let i = 1; i <= 4; i++) {
@@ -96,12 +69,26 @@ $(function () {
 
   // delete new todo
 
+      //auto complete
+    // const databaseAutoComplete = [
+    //   'Love in the Time of Cholera',
+    //   'To Kill a Mockingbird',
+    //   'The Great Gatsby',
+    //   'The Godfather',
+    //   'Lord of the Rings',
+    //   'Forrest Gump',
+    //   'The Matrix',
+    //   'Silk Sleep Mask',
+    //   'Silk Slippers',
+    //   'Silk Robe',
+    //   'Alphabet Soup',
+    // ];
+    // $("#inputText").autocomplete({
+    //   source: databaseAutoComplete
+    // });
   
   
   loadTodos();
-  $('.delete').click(function () {
-    alert("Handler for .click() called.");
-});
   categoryCounter();
   
 
