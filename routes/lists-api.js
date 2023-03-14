@@ -99,7 +99,6 @@ router.post('/:id/update', (req, res) => {
 // router.post('/:id/delete', (req, res) => {
 //   const user_id = req.session.user_id;
 //   const todo_id = req.body.id;
-
 //   userQueries.deleteTodo(user_id, todo_id)
 //     .then(todo => {
 //       delete db[todo_id];
