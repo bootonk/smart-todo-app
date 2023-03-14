@@ -12,11 +12,13 @@ $(function() {
   //create a new element for todo
   const createTodoElement = (todo) => {
     let $todo = $(`
-  <li>
-    <input id="checkbox-1" type="checkbox">
-    <label for="checkbox-1">${todo.name}<span class="box"></span></label>
-  </li>
-`);
+    <li>
+        <input class="form-check-input" id="tab-1" type="checkbox">
+        <label class="form-check-label text-dark" for="tab-1">${todo.name}<span class="box"></span></label>
+        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
+        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </li>
+`); 
     return $todo;
   };
 
