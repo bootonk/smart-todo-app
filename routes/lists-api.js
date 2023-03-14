@@ -11,8 +11,8 @@ const userQueries = require('../db/queries/todos');
 
 // GET api/lists : show all lists by user
 router.get('/:category', (req, res) => {
-  console.log(req.body)
   user_id = req.session.user_id;
+  console.log('cookie',user_id)
   category_id = req.params.category
   console.log(category_id);
   userQueries.getActiveTodosByCategory(user_id, category_id)
