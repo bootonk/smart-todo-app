@@ -1,5 +1,5 @@
 // Client facing scripts here
-const databaseAutoComplete = require('autoComplete.js');
+// const databaseAutoComplete = require('autoComplete.js');
 
 
 $(function() {
@@ -52,7 +52,7 @@ $(function() {
       });
 
     }
-    
+
   };
 
   //post input field
@@ -64,24 +64,24 @@ $(function() {
       loadTodos();
     });
 
-    
+
     //auto complete
-    const databaseAutoComplete = [
-      'Love in the Time of Cholera',
-      'To Kill a Mockingbird',
-      'The Great Gatsby',
-      'The Godfather',
-      'Lord of the Rings',
-      'Forrest Gump',
-      'The Matrix',
-      'Silk Sleep Mask',
-      'Silk Slippers',
-      'Silk Robe',
-      'Alphabet Soup',
-    ];
-    $("#inputText").autocomplete({
-      source: databaseAutoComplete
-    });
+    // const databaseAutoComplete = [
+    //   'Love in the Time of Cholera',
+    //   'To Kill a Mockingbird',
+    //   'The Great Gatsby',
+    //   'The Godfather',
+    //   'Lord of the Rings',
+    //   'Forrest Gump',
+    //   'The Matrix',
+    //   'Silk Sleep Mask',
+    //   'Silk Slippers',
+    //   'Silk Robe',
+    //   'Alphabet Soup',
+    // ];
+    // $("#inputText").autocomplete({
+    //   source: databaseAutoComplete
+    // });
 
   });
 
