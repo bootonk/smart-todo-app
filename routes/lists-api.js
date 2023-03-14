@@ -53,20 +53,18 @@ router.post('/', (req, res) => {
   // category_id = req.body.category_id;
   apiCalls(todo_name)
   .then((category_id) => {
-    // userQueries.addTodo(user_id, category_id, todo_name)
-    //   .then(todo => {
-    //     res.json(todo);
-    //     console.log(todo)
-    //   })
-    //   .catch(err => {
-    //     res
-    //       .status(500)
-    //       .json({ error: err.message });
-    //   });
+    userQueries.addTodo(user_id, category_id, todo_name)
+      .then(todo => {
+        res.json(todo);
+        console.log(todo)
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
   })
   .catch()
-
-
 });
 
 // POST api/lists/:id/update

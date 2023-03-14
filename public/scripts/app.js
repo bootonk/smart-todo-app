@@ -64,19 +64,25 @@ $(function () {
         $(`#tab-${category_id}`).append($todoItem);
         $('#inputText').val('');
         categoryCounter();
+
+        // reload todos to show new item without refresh
+        loadTodos();
+
+        // show the category that was added to
+        $(`#tab-${category_id}`).trigger('click');
       })
   });
 
   // delete new todo
 
-  
-  
+
+
   loadTodos();
   $('.delete').click(function () {
     alert("Handler for .click() called.");
 });
   categoryCounter();
-  
+
 
 });
 
