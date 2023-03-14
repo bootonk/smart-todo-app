@@ -16,6 +16,7 @@ $(function() {
     <input id="checkbox-1" type="checkbox">
     <label for="checkbox-1">${todo.name}<span class="box"></span></label>
   </li>
+<<<<<<< HEAD
 `);
     return $todo;
   };
@@ -30,6 +31,11 @@ $(function() {
   //     $newTodo.prepend($todoContent);
   //   }
   // };
+=======
+`)
+  return $todo;
+}
+>>>>>>> front-end_integ
 
   // //render Todos
   // const renderTodos = (database) => {
@@ -52,6 +58,7 @@ $(function() {
       });
 
     }
+<<<<<<< HEAD
 
   };
 
@@ -119,16 +126,55 @@ $(function() {
   //   done: false
   //   }
   //   ];
+=======
+  };
 
+  //add count to category tab
+  const categoryCounter = () => {
+    for(let i = 1; i <= 5; i++) {
+      $.get(`api/lists/count/${i}`, (count) => {
+        //update count
+        $(`a[href='#tab-${i}'] .count`).text(`(${count})`);
+      });
+    }
+  };
 
-  // database.forEach(todo => {
-  //   console.log(todo.name) //get all todo names
-  //   console.log(todo.date) //get all todo dates
-  //   console.log(todo.done) //get all todo status
+  // //post input field
+  // $('#form-input').on('submit', function(event) {
+  //   event.preventDefault();
+  //   let todo = $('#form-input').serialize();
+>>>>>>> front-end_integ
+
+  //   $.post('/api/lists', todo, () => {
+  //     $('#inputText').val('');
+  //     loadTodos();
+  //   });
   // });
 
 
+<<<<<<< HEAD
   loadTodos();
+=======
+  $('#form-input').on('submit', function(event) {
+    event.preventDefault();
+    let todoName = $('#inputText').val();
+    let category_id = 2;
+
+    $.post('/api/lists', { todo_name: todoName, category_id: category_id})
+    
+      .then ((data) => {
+      // add the new todo item to the DOM
+      let $todoItem = createTodoElement(data);
+      $(`#tab-${category_id}`).append($todoItem);
+      $('#inputText').val('');
+      categoryCounter();
+    })
+  });
+
+
+    loadTodos();
+    categoryCounter();
+>>>>>>> front-end_integ
 });
 
 

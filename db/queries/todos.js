@@ -53,15 +53,15 @@ const sortActiveTodosNewest = (user_id, category_id) => {
 //
 const addTodo = (user_id, category_id, name) => {
   const values = [`${user_id}`, `${category_id}`, `${name}`];
-  return db.query('INSERT INTO todos (user_id, category_id, name) VALUES ($1, $2, $3)', values)
+  return db.query('INSERT INTO todos (user_id, category_id, name) VALUES ($1, $2, $3) RETURNING *', values)
   .then(data => {
-    return data.rows;
+    return data.rows[0];
   });
 };
 
 const updateTodoName = (name, user_id, id) => {
   const values = [`${name}`, `${user_id}`, `${id}`];
-  return db.query('UPDATE todos SET name = $1 WHERE user_id = $2 AND id = $3;', values)
+  return db.query('UPDATE todos SET name = $1 WHERE user_id = $2 AND id = $3 RETURNING *;', values)
   .then(data => {
     return data.rows;
   });
@@ -69,7 +69,7 @@ const updateTodoName = (name, user_id, id) => {
 
 const updateTodoCategory = (category_id, user_id, id) => {
   const values = [`${category_id}`, `${user_id}`, `${id}`];
-  return db.query('UPDATE todos SET category_id = $1 WHERE user_id = $2 AND id = $3;', values)
+  return db.query('UPDATE todos SET category_id = $1 WHERE user_id = $2 AND id = $3 RETURNING *;', values)
   .then(data => {
     return data.rows;
   });
@@ -77,7 +77,7 @@ const updateTodoCategory = (category_id, user_id, id) => {
 
 const updateTodoStatus = (user_id, id) => {
   const values = [`${user_id}`, `${id}`];
-  return db.query('UPDATE todos SET done = NOT done WHERE user_id = $1 AND id = $2;', values)
+  return db.query('UPDATE todos SET done = NOT done WHERE user_id = $1 AND id = $2 RETURNING *;', values)
   .then(data => {
     return data.rows;
   });
@@ -85,7 +85,7 @@ const updateTodoStatus = (user_id, id) => {
 
 const deleteTodo = (user_id, id) => {
   const values = [`${user_id}`, `${id}`];
-  return db.query('DELETE FROM todos WHERE user_id = $1 AND id = $2;', values)
+  return db.query('DELETE FROM todos WHERE user_id = $1 AND id = $2 RETURNING *;', values)
   .then(data => {
     return data.rows;
   });
