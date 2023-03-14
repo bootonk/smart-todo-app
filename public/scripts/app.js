@@ -32,7 +32,7 @@ $(function() {
           $(`#tab-${i}`).append(createTodoElement(todo));
           $(`#${todo.id}`).click(function() {
             $(`.${todo.id}`).hide("slide", 1000);
-            $(`#${todo.id}`).text(`${todo.id}-delete`); //
+            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete new todo
           });
         });
       });
@@ -99,25 +99,23 @@ $(function() {
         });
     });
 
-    // delete new todo
-
-      //auto complete
-    // const databaseAutoComplete = [
-    //   'Love in the Time of Cholera',
-    //   'To Kill a Mockingbird',
-    //   'The Great Gatsby',
-    //   'The Godfather',
-    //   'Lord of the Rings',
-    //   'Forrest Gump',
-    //   'The Matrix',
-    //   'Silk Sleep Mask',
-    //   'Silk Slippers',
-    //   'Silk Robe',
-    //   'Alphabet Soup',
-    // ];
-    // $("#new-todo-input").autocomplete({
-    //   source: databaseAutoComplete
-    // });
+    //auto complete
+    const databaseAutoComplete = [
+      'Love in the Time of Cholera',
+      'To Kill a Mockingbird',
+      'The Great Gatsby',
+      'The Godfather',
+      'Lord of the Rings',
+      'Forrest Gump',
+      'The Matrix',
+      'Silk Sleep Mask',
+      'Silk Slippers',
+      'Silk Robe',
+      'Alphabet Soup',
+    ];
+    $("#new-todo-input").autocomplete({
+      source: databaseAutoComplete
+    });
 
 
   loadTodos();
