@@ -22,10 +22,21 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
 
   <link rel="stylesheet" href="styles/layout.css" type="text/css">
+  <link rel="stylesheet" href="styles/layout2.css" type="text/css">
   <link rel="stylesheet" href="/styles/nav.css" type="text/css">
   <link rel="stylesheet" href="/styles/form.css" type="text/css">
   <link rel="stylesheet" href="/styles/tab.css" type="text/css">
   <link rel="stylesheet" href="/styles/card.css" type="text/css">
+  <link rel="stylesheet" href="/styles/main.css" type="text/css">
+  <link rel="stylesheet" href="/styles/share.css" type="text/css">
+
+
+     <!-- External CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css">
+
+
+
+
 
   <!-- JS  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"
@@ -38,6 +49,7 @@
 </head>
 
 <body>
+      <!-- Top nav bar (fixed) -->
   <nav class="nav-top">
     <div id="nav-logo">Smart To Do List</div>
     <div class="nav-login">
@@ -45,69 +57,25 @@
     </div>
   </nav>
 
-  <section class="main-container">
-    <section class="header-form">
+    <!-- Page-specific (main) content here -->
+    <main>
+    <section class="new-todo-container">
       <form id="form-input" action="/api/lists/" method="post">
-        <p>How are you today?</p>
-        <input id="inputText"type="text" name="todo_name" placeholder="Add your to-do">
-        <button type="submit" class="addItemButton">Add</button>
+        <p></p>
+        <input id="new-todo-input" type="text" name="todo_name" maxlength="300" placeholder="I want to ...">
+        <button type="submit" class="addItemButton"><i class="fas fa-plus"></i> Add</button>
       </form>
     </section>
 
+
     <section id="categories">
       <ul>
-        <li><a href="#tab-1">To Buy <span class="count"></span></a></li>
-        <li><a href="#tab-2">To Watch <span class="count"></span></a></li>
-        <li><a href="#tab-3">To Eat <span class="count"></span></a></li>
-        <li><a href="#tab-4">To Read <span class="count"></span></a></li>
+        <li><a href="#tab-1">Read <span class="count"></span></a></li>
+        <li><a href="#tab-2">Watch <span class="count"></span></a></li>
+        <li><a href="#tab-3">Shop <span class="count"></span></a></li>
+        <li><a href="#tab-4">Eat <span class="count"></span></a></li>
       </ul>
       <div class="form-check nav-pills" id="tab-1">
-
-        <!-- <input class="form-check-input" id="tab-1" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-1">Dalgona Coffee Challenge<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button> -->
-
-      </div>
-      <div class="form-check nav-pills" id="tab-2">
-
-        <!-- <input class="form-check-input" id="tab-2" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-2">Read a book<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button> -->
-
-      </div>
-      <div class="form-check nav-pills" id="tab-3">
-
-        <!-- <input class="form-check-input" id="tab-3" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-3">Spring cleaning<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button> -->
-
-      </div>
-      <div class="form-check nav-pills" id="tab-4">
-
-        <!-- <input class="form-check-input" id="tab-4" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-4">YouTube workout<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button> -->
-
-      </div>
-      <!-- <div class="form-check nav-pills" id="tab-5">
-
-        <input class="form-check-input" id="tab-5" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-5">Netflix binge<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-
-      </div> -->
-    </section>
-
-    <section id="uncategoried">
-      <ul>
-        <li><a href="#tab-6">Pick Your Own</a></li>
-      </ul>
-      <div class="form-check nav-pills" id="tab-6">
 
         <input class="form-check-input" id="tab-6" type="checkbox">
         <label class="form-check-label text-dark" for="tab-6">Harry Porter<span class="box"></span></label>
@@ -116,11 +84,41 @@
 
       </div>
 
-    </section>
+        <div class="form-check nav-pills" id="tab-1">
+        </div>
+        <div class="form-check nav-pills" id="tab-2"></div>
+        <div class="form-check nav-pills" id="tab-3"></div>
+        <div class="form-check nav-pills" id="tab-4"></div>
+      </section>
 
-  </section>
+      <section class="show-completed">
+        <i class="fa-sharp fa-solid fa-arrow-down">Show completed</i>
+      </section>
 
 
+
+      <section id="uncategorized">
+        <a>We could not place these, add to the group of your choice</a>
+        <div class="todo-uncategorized">
+          <input class="form-check-input" type="checkbox" id="myCheckbox1">
+          <label class="form-check-label text-dark" for="myCheckbox1">todo xxxx<span class="box"></span></label>
+          <div class="uncategorized-buttons-container">
+            <button type="submit" class="edit btn btn-warning btn-sm fa-sharp fa-solid fa-pen"></button>
+            <button type="submit" class="delete btn btn-warning btn-sm fa-solid fa-circle-xmark"></button>
+          </div>
+        </div>
+        <div class="todo-uncategorized">
+          <input class="form-check-input" type="checkbox" id="myCheckbox1">
+          <label class="form-check-label text-dark" for="myCheckbox1">todo xxxeeeeeex<span class="box"></span></label>
+          <div class="uncategorized-buttons-container">
+            <button type="submit" class="edit btn btn-warning btn-sm fa-sharp fa-solid fa-pen"></button>
+            <button type="submit" class="delete btn btn-warning btn-sm fa-solid fa-trash"></button>
+          </div>
+        </div>
+      </section>
+
+
+    </main>
 
 </body>
 

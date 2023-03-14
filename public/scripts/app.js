@@ -32,7 +32,7 @@ $(function() {
           $(`#tab-${i}`).append(createTodoElement(todo));
           $(`#${todo.id}`).click(function() {
             $(`.${todo.id}`).hide("slide", 1000);
-            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete
+            $(`#${todo.id}`).text(`${todo.id}-delete`); //deletedelete new todo
           });
         });
       });
@@ -40,16 +40,38 @@ $(function() {
     }
   };
 
-  //post input field
-  $('#form-input').on('submit', function(e) {
-    e.preventDefault();
-    let input = $('#form-input').serialize();
-    $.post('/lists', input, () => {
-      $('#inputText').val('');
-      loadTodos();
-    });
+  //add count to category tab
+  const categoryCounter = () => {
+    for (let i = 1; i <= 4; i++) {
+      $.get(`api/lists/count/${i}`, (count) => {
+        //update count
+        $(`a[href='#tab-${i}'] .count`).text(`(${count})`);
+      });
+    }
+  };
 
-    
+  // add new todo
+  $('#form-input').on('submit', function (event) {
+    event.preventDefault();
+    let todoName = $('#new-todo-input').val();
+    let category_id = 1;
+
+    $.post('/api/lists', { todo_name: todoName, category_id: category_id })
+
+      .then((data) => {
+        // update category count & clear form
+        categoryCounter();
+        $('#inputText').val('');
+
+        // add the new todo item to the DOM
+        console.log(data)
+        let $todoItem = createTodoElement(data);
+        $(`#tab-${category_id}`).append($todoItem);
+        $('#new-todo-input').val('');
+        categoryCounter();
+      })
+  });
+
     //add count to category tab
     const categoryCounter = () => {
       for (let i = 1; i <= 4; i++) {
@@ -77,35 +99,27 @@ $(function() {
         });
     });
 
+    //auto complete
+    const databaseAutoComplete = [
+      'Love in the Time of Cholera',
+      'To Kill a Mockingbird',
+      'The Great Gatsby',
+      'The Godfather',
+      'Lord of the Rings',
+      'Forrest Gump',
+      'The Matrix',
+      'Silk Sleep Mask',
+      'Silk Slippers',
+      'Silk Robe',
+      'Alphabet Soup',
+    ];
+    $("#new-todo-input").autocomplete({
+      source: databaseAutoComplete
+    });
 
-    loadTodos();
-    categoryCounter();
-  
 
-  });
+  loadTodos();
+  categoryCounter();
 
-  //auto complete
-  const databaseAutoComplete = [
-    'Love in the Time of Cholera',
-    'To Kill a Mockingbird',
-    'The Great Gatsby',
-    'The Godfather',
-    'Lord of the Rings',
-    'Forrest Gump',
-    'The Matrix',
-    'Silk Sleep Mask',
-    'Silk Slippers',
-    'Silk Robe',
-    'Alphabet Soup',
-  ];
-  $("#inputText").autocomplete({
-    source: databaseAutoComplete
-  });
-
-  //Edit
-  
 
 });
-  
-
-//auto complete

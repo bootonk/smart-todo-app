@@ -1,0 +1,46 @@
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/*
+ * Global layout stuff
+ */
+
+
+ body {
+  color: #545149;
+  height: 100%;
+  background-color: #f4f1ec;
+  /* font-size: 25px; */
+  display: flex;
+}
+
+nav {
+  font-family: 'Bungee', cursive;
+  color: #ffffff;
+  background-color: #a14a40;
+  position: fixed;
+
+}
+
+main {
+  width:90%;
+  position: relative;
+  background-color: #f4f1ec;
+  text-align: center;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  margin-top: 14%;
+  margin-left: 5%;
+  margin-right: 5%;
+  flex-direction: column;
+    /* font-size: 25px; */
+
+}

@@ -8,7 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/todos');
-const db = require('../db/connection.js');
+const { apiCalls } = require('../external-apis/api-calls');
 
 // GET api/lists/:category : show all lists by user
 router.get('/:category', (req, res) => {
@@ -60,6 +60,22 @@ router.post('/', (req, res) => {
         .json({ error: err.message });
     });
 
+  // api-calls
+  // category_id = req.body.category_id;
+  apiCalls(todo_name)
+    .then((category_id) => {
+      userQueries.addTodo(user_id, category_id, todo_name)
+        .then(todo => {
+          res.json(todo);
+          console.log(todo);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    })
+    .catch();
 });
 
 // POST api/lists/:id/update  (TodoCategory)
@@ -80,6 +96,20 @@ router.post('/:id/update', (req, res) => {
 });
 
 // POST api/lists/:id/delete
+// router.post('/:id/delete', (req, res) => {
+//   const user_id = req.session.user_id;
+//   const todo_id = req.body.id;
+//   userQueries.deleteTodo(user_id, todo_id)
+//     .then(todo => {
+//       delete db[todo_id];
+//       res.json({ todo });
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
+// });
 router.post('/:id/delete', (req, res) => {
   const user_id = req.session.user_id;
   const todo_id = req.body.id;

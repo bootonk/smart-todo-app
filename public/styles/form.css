@@ -1,12 +1,33 @@
-.header-form {
+
+.new-todo-container {
   display: flex;
   justify-content: center;
-  margin-bottom: 40px;
+  font-size: 28px;
+  position: fixed;
+  z-index: 1000;
+  top: 66px;
+  background-color: #f4f1ec;
+  width: 100%;
 }
 
+#new-todo-input {
+  background-color: transparent;
+  margin-top: 5%;
+  margin-bottom: 10%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: 4px solid rgb(81, 79, 79);
+  /* width: 98%; */
+}
 
-#form-input {
-  text-align: center;
-  font-size: 20px;
-  font-family: sans-serif;
+button.addItemButton {
+  background: #4b6cb7;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 50px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+  font-size: x-large;
 }
