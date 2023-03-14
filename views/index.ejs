@@ -38,19 +38,19 @@
 
   <section class="main-container">
     <section class="header-form">
-      <form id="form-input" action="">
+      <form id="form-input" action="/api/lists/" method="post">
         <p>How are you today?</p>
-        <input id="inputText"type="text" name="todo" placeholder="Add your to-do">
+        <input id="inputText"type="text" name="todo_name" placeholder="Add your to-do">
         <button type="submit" class="addItemButton">Add</button>
       </form>
     </section>
 
     <section id="categories">
       <ul>
-        <li><a href="#tab-1">To Buy</a></li>
-        <li><a href="#tab-2">To Watch</a></li>
-        <li><a href="#tab-3">To Eat</a></li>
-        <li><a href="#tab-4">To Read</a></li>
+        <li><a href="#tab-1">To Buy <span class="count"></span></a></li>
+        <li><a href="#tab-2">To Watch <span class="count"></span></a></li>
+        <li><a href="#tab-3">To Eat <span class="count"></span></a></li>
+        <li><a href="#tab-4">To Read <span class="count"></span></a></li>
         <li><a href="#tab-5">All</a></li>
       </ul>
       <div class="tab-body" id="tab-1">
