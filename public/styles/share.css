@@ -1,0 +1,22 @@
+.share {
+  display: flex;
+  width: 100%;
+  background-color: #FDF6FF;
+  justify-content: flex-end;
+  padding-top: 2%;
+  padding-right: 2%;
+  color: rgb(102, 99, 99);
+}
+
+.share button {
+  border: none;
+  background-color: transparent;
+}
+
+.text-message {
+  color: rgb(251, 6, 96);
+}
+
+.email {
+  color: rgb(251, 6, 96);
+}

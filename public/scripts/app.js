@@ -17,7 +17,6 @@ $(function () {
     <label for="checkbox-1">${todo.name}<span class="box"></span></label>
     <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
     <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
-  </li>
 `)
     return $todo;
   }
@@ -53,8 +52,8 @@ $(function () {
   // add new todo
   $('#form-input').on('submit', function (event) {
     event.preventDefault();
-    let todoName = $('#inputText').val();
-    let category_id = 0;
+    let todoName = $('#new-todo-input').val();
+    let category_id = 1;
 
     $.post('/api/lists', { todo_name: todoName, category_id: category_id })
 
@@ -64,19 +63,11 @@ $(function () {
         $('#inputText').val('');
 
         // add the new todo item to the DOM
+        console.log(data)
         let $todoItem = createTodoElement(data);
         $(`#tab-${category_id}`).append($todoItem);
-
-        // show tab for the category that was added to
-        const tabLoad = (data.category_id - 1);
-        console.log('tabload:', tabLoad);
-        $(`#categories`).tabs({
-          active: tabLoad
-        });
-
-        // reload todos to show new item without refresh
-        loadTodos();
-
+        $('#new-todo-input').val('');
+        categoryCounter();
       })
   });
 
@@ -96,7 +87,7 @@ $(function () {
     //   'Silk Robe',
     //   'Alphabet Soup',
     // ];
-    // $("#inputText").autocomplete({
+    // $("#new-todo-input").autocomplete({
     //   source: databaseAutoComplete
     // });
 
