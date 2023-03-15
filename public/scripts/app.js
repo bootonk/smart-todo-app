@@ -12,11 +12,12 @@ $(function () {
   //create a new element for todo
   const createTodoElement = (todo) => {
     let $todo = $(`
-  <li>
-    <input id="checkbox-1" type="checkbox">
-    <label for="checkbox-1">${todo.name}<span class="box"></span></label>
-    <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
-    <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+    <div class="${todo.id}">
+      <input id="checkbox-1" type="checkbox">
+      <label for="checkbox-1">${todo.name}<span class="box"></span></label>
+      <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
+      <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+    </div>
 `)
     return $todo;
   }
@@ -31,7 +32,9 @@ $(function () {
         todos.forEach(todo => {
           $(`#tab-${i}`).append(createTodoElement(todo));
           $(`#${todo.id}`).click(function () {
-            alert(`Alert for ${todo.id}.click() called.`);
+            $(`.${todo.id}`).hide("slide", 1000);
+            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
+            categoryCounter();
         });
         });
       });
