@@ -1,7 +1,6 @@
 // Client facing scripts here
 // const databaseAutoComplete = require('autoComplete.js');
 
-
 $(function() {
 
   console.log("app.js running");
@@ -11,16 +10,18 @@ $(function() {
 
   //create a new element for todo
   const createTodoElement = (todo) => {
+    // console.log('category', todo);
     let $todo = $(`
     <div class="${todo.id}">
       <input id="checkbox-1" type="checkbox">
-      <label for="checkbox-1">${todo.name}<span class="box"></span></label>
-      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-      <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+      <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
+      <button type="submit" class="btn btn-sm btn-warning edit" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+      <button type="submit" class="btn btn-sm btn-danger" id="${todo.id}">Delete</button>
     </div>
-`)
+`);
     return $todo;
   };
+
 
   //load Todos by category
   const loadTodos = () => {
@@ -31,11 +32,11 @@ $(function() {
         $(`#tab-${i}`).empty();
         todos.forEach(todo => {
           $(`#tab-${i}`).append(createTodoElement(todo));
-          $(`#${todo.id}`).click(function () {
-            $(`.${todo.id}`).hide("slide", 1000);
-            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
-            categoryCounter();
-        });
+          $(`#${todo.id}`).click(function() {
+            $(`.${todo.id}`).hide("slide", 1000); //delete todo
+            // $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
+
+          });
         });
       });
 
@@ -84,6 +85,41 @@ $(function() {
   });
 
   // edit todo
+  $('#categories').on('click', ".edit", function(event) {
+    event.preventDefault();
+    const todoName = $(event.target).parent().find('label').text();
+    $('#Input1').val(todoName);
+    const category = $(event.target).parent().find('label').data('category');
+   
+  });
+
+  $('#save').on('click', function(event) {
+    event.preventDefault();
+    const todo_id = $(event.target).parent().find('div').data();
+    console.log($(event.target).parent())
+    const newC = $('#updateCategory').val();
+    $('#exampleModal').hide("slide", 1000);
+    
+    const newUpdate = $('#updateCategory').serialize();
+    const category = $(event.target).parent().find('label').data('category');
+
+    // $.ajax({
+    //   method: 'POST',
+    //   url: `/${todo_id}/update`,
+    //   data: newC,
+    //   sucess: () => {
+    //     $('#updateCategory').val();
+    //     loadTodos();
+    //   }
+    // });
+
+  });
+
+  //delete to do
+  const deleteTodo = () => {
+
+  };
+
 
 
   //auto complete
