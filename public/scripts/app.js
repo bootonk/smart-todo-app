@@ -80,7 +80,8 @@ $(function() {
       });
   });
 
-  // delete new todo
+  // edit todo
+  
 
   //auto complete
   // const databaseAutoComplete = [
