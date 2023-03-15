@@ -1,7 +1,6 @@
 // Client facing scripts here
 // const databaseAutoComplete = require('autoComplete.js');
 
-
 $(function () {
 
   console.log("app.js running");
@@ -22,6 +21,19 @@ $(function () {
     return $todo;
   }
 
+ // create a new element for a completed todo
+ const createCompleteTodoElement = (completeTodo) => {
+  let $completeTodo = $(`
+  <div class="${todo.id}">
+    <input id="checkbox-1" type="checkbox" checked>
+    <label for="checkbox-1">${todo.name}<span class="box"></span></label>
+    <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
+    <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+  </div>
+`)
+  return $completeTodo;
+ }
+
   //load Todos by category
   const loadTodos = () => {
 
@@ -35,7 +47,25 @@ $(function () {
             $(`.${todo.id}`).hide("slide", 1000);
             $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
             categoryCounter();
-        });
+          });
+
+          // listener and route for updating todo status
+          $(`.${todo.id} input`).on("click", function() {
+            $.post(`/api/lists/${todo.id}/check`)
+            .then((data) => {
+              categoryCounter();
+              loadTodos();
+            })
+          });
+
+          // START HERE
+          // load hidden completed todos
+          $.get(`api/lists/complete/${i}`, (completeTodos) => {
+            console.log(completeTodos);
+            // completeTodos.forEach(completeTodo => {
+            // $(`#tab-${i}`).append(createCompleteTodoElement(completeTodo));
+            // })
+          })
         });
       });
 
@@ -102,6 +132,13 @@ $(function () {
     // $("#new-todo-input").autocomplete({
     //   source: databaseAutoComplete
     // });
+
+  // <div class="${todo.id}">
+  //   <input id="checkbox-1" type="checkbox">
+  //   <label for="checkbox-1">${todo.name}<span class="box"></span></label>
+  //   <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
+  //   <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+  // </div>
 
 
   loadTodos();

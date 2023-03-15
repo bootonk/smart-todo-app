@@ -44,6 +44,23 @@ router.get('/count/:category', (req, res) => {
     });
 });
 
+// GET api/lists/complete/:category : show all completed by lists by user
+router.get('/complete/:category', (req, res) => {
+  user_id = req.session.user_id;
+  console.log('cookie',user_id)
+  category_id = req.params.category
+  console.log(category_id);
+  userQueries.getCompleteTodosByCategory(user_id, category_id)
+    .then(lists => {
+      res.json(lists);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
 // POST api/lists : add new todo
 router.post('/', (req, res) => {
   user_id = req.session.user_id;
@@ -77,6 +94,22 @@ router.get('/:id/update', (req, res) => {
   //       .status(500)
   //       .json({ error: err.message });
   //   });
+});
+
+// POST api/lists/:id/check
+router.post('/:id/check', (req, res) => {
+  const user_id = req.session.user_id;
+  const id = req.params.id;
+
+  userQueries.updateTodoStatus(user_id, id)
+    .then(todo => {
+      res.json({ todo });
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 // POST api/lists/:id/delete
