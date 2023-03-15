@@ -8,6 +8,7 @@
 const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/todos');
+const { apiCalls } = require('../external-apis/api-calls');
 
 // GET api/lists/:category : show all lists by user
 router.get('/:category', (req, res) => {
@@ -46,19 +47,22 @@ router.get('/count/:category', (req, res) => {
 // POST api/lists : add new todo
 router.post('/', (req, res) => {
   user_id = req.session.user_id;
-  category_id = req.body.category_id;
+  // category_id = req.body.category_id;
   todo_name = req.body.todo_name;
-  userQueries.addTodo(user_id, category_id, todo_name)
-    .then(todo => {
-      res.json(todo);
-      console.log(todo)
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-
+  apiCalls(todo_name)
+  .then((category_id) => {
+    userQueries.addTodo(user_id, category_id, todo_name)
+      .then(todo => {
+        res.json(todo);
+        console.log(todo)
+      })
+      .catch(err => {
+        res
+          .status(500)
+          .json({ error: err.message });
+      });
+  })
+  .catch()
 });
 
 // POST api/lists/:id/update
