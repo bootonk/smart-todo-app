@@ -8,6 +8,8 @@ $(function () {
   //create tab
   $('#categories').tabs();
 
+
+
   //create a new element for todo
   const createTodoElement = (todo) => {
     let $todo = $(`
@@ -24,21 +26,42 @@ $(function () {
  // create a new element for a completed todo
  const createCompleteTodoElement = (completeTodo) => {
   let $completeTodo = $(`
-  <div class="${todo.id}">
+  <div class="${completeTodo.id}">
     <input id="checkbox-1" type="checkbox" checked>
-    <label for="checkbox-1">${todo.name}<span class="box"></span></label>
+    <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
     <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
-    <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
+    <button type="submit" class="btn btn-danger btn-sm delete" id="${completeTodo.id}">Delete</button>
   </div>
 `)
   return $completeTodo;
- }
+ };
+
+ const createShowCompletedElement = (category) => {
+  let $showCompleted = $(`
+    <section class="show-completed-${category}">
+      <div class="toggle-completed-${category}"><i class="fa-sharp fa-solid fa-arrow-down">Show completed</i></div>
+      <div class="completed-container-${category}" style="display:none"></div>
+    </section>
+  `)
+
+  return $showCompleted;
+ };
+
+ const changeTodoStatus = (todo) => {
+  // listener and route for updating todo status
+    $.post(`/api/lists/${todo.id}/check`)
+    .then((data) => {
+      categoryCounter();
+      loadTodos();
+    })
+ };
 
   //load Todos by category
   const loadTodos = () => {
 
     for (let i = 1; i <= 4; i++) {
       $.get(`api/lists/${i}`, (todos) => {
+        console.log(todos);
         // renderTodos(todos);
         $(`#tab-${i}`).empty();
         todos.forEach(todo => {
@@ -51,22 +74,31 @@ $(function () {
 
           // listener and route for updating todo status
           $(`.${todo.id} input`).on("click", function() {
-            $.post(`/api/lists/${todo.id}/check`)
-            .then((data) => {
-              categoryCounter();
-              loadTodos();
-            })
-          });
-
-          // START HERE
-          // load hidden completed todos
-          $.get(`api/lists/complete/${i}`, (completeTodos) => {
-            console.log(completeTodos);
-            // completeTodos.forEach(completeTodo => {
-            // $(`#tab-${i}`).append(createCompleteTodoElement(completeTodo));
-            // })
+            changeTodoStatus(todo);
           })
+          // });
+
         });
+
+        // load hidden completed todos
+        $.get(`api/lists/complete/${i}`, (completeTodos) => {
+          console.log(completeTodos);
+          let category = i;
+          if (completeTodos.length > 0) {
+            $(`#tab-${category}`).append(createShowCompletedElement(category));
+            $(`.toggle-completed-${category}`).click(function() {
+              $(`.completed-container-${category}`).toggle();
+            });
+            completeTodos.forEach(completeTodo => {
+              $(`.completed-container-${category}`).append(createCompleteTodoElement(completeTodo));
+              // listener and route for updating todo status
+              $(`.${completeTodo.id} input`).on("click", function() {
+                changeTodoStatus(completeTodo);
+              })
+            });
+
+          }
+        })
       });
 
     }
@@ -132,14 +164,6 @@ $(function () {
     // $("#new-todo-input").autocomplete({
     //   source: databaseAutoComplete
     // });
-
-  // <div class="${todo.id}">
-  //   <input id="checkbox-1" type="checkbox">
-  //   <label for="checkbox-1">${todo.name}<span class="box"></span></label>
-  //   <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
-  //   <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
-  // </div>
-
 
   loadTodos();
   categoryCounter();
