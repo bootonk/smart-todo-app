@@ -15,7 +15,7 @@ router.get('/:category', (req, res) => {
   const user_id = req.session.user_id;
   console.log('cookie',user_id);
   const category_id = req.params.category;
-  console.log(category_id);
+  console.log({category_id});
   userQueries.getActiveTodosByCategory(user_id, category_id)
     .then(lists => {
       res.json(lists);
@@ -32,7 +32,7 @@ router.get('/count/:category', (req, res) => {
   const user_id = req.session.user_id;
   console.log('cookie',user_id);
   const category_id = req.params.category;
-  console.log(category_id);
+  console.log({category_id});
   userQueries.getCategoryTodoCount(user_id, category_id)
     .then(lists => {
       res.json(lists[0].count);
@@ -86,7 +86,7 @@ router.post('/:id/update', (req, res) => {
   const todo_name = req.body.todo_name;
   userQueries.updateTodo(user_id, todo_id, todo_name, category_id)
     .then(todo => {
-      res.json({ todo });
+      res.render('Edit', { todo });
     })
     .catch(err => {
       res
@@ -94,6 +94,8 @@ router.post('/:id/update', (req, res) => {
         .json({ error: err.message });
     });
 });
+
+
 
 // POST api/lists/:id/delete
 // router.post('/:id/delete', (req, res) => {
@@ -110,20 +112,6 @@ router.post('/:id/update', (req, res) => {
 //         .json({ error: err.message });
 //     });
 // });
-router.post('/:id/delete', (req, res) => {
-  const user_id = req.session.user_id;
-  const todo_id = req.body.id;
-  userQueries.deleteTodo(user_id, todo_id)
-    .then(todo => {
-      delete db[todo_id];
-      res.json({ todo });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
-});
 
 
 module.exports = router;
