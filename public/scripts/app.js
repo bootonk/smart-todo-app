@@ -15,7 +15,7 @@ $(function() {
     <div class="${todo.id}">
       <input id="checkbox-1" type="checkbox">
       <label for="checkbox-1">${todo.name}<span class="box"></span></label>
-      <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
+      <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
       <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
     </div>
 `)
