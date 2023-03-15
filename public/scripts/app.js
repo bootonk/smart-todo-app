@@ -58,6 +58,30 @@ $(function() {
     });
   };
 
+  const createUncategorizedContainer = () => {
+    let $uncategorizedContainer = $(`
+      <div>
+        <p>Island of Misfit Todos</p>
+        <div class="uncategorized-container"></div>
+      </div>
+    `);
+
+    return $uncategorizedContainer;
+  };
+
+  const createUncategorizedElements = () => {
+    $.get(`api/lists/5`, (uncategorizedTodos) => {
+      if (uncategorizedTodos.length > 0) {
+        $(`#uncategorized`).empty();
+        $(`#uncategorized-container`).empty();
+        $('#uncategorized').append(createUncategorizedContainer());
+        uncategorizedTodos.forEach(uncategorizedTodo => {
+          $('.uncategorized-container').append(createTodoElement(uncategorizedTodo));
+        })
+      }
+    });
+  };
+
   //load Todos by category
   const loadTodos = () => {
     console.log("hello");
@@ -103,6 +127,9 @@ $(function() {
 
       });
     }
+
+    createUncategorizedElements();
+
   };
 
   //add count to category tab
@@ -129,7 +156,11 @@ $(function() {
 
         // add the new todo item to the DOM
         let $todoItem = createTodoElement(data);
-        $(`#tab-${category_id}`).append($todoItem);
+        if (data.category_id >= 4) {
+          $(`#tab-${category_id}`).append($todoItem);
+        } else if (data.category_id === 5) {
+          createUncategorizedElements();
+        }
 
         // show tab for the category that was added to
         const tabLoad = (data.category_id - 1);
