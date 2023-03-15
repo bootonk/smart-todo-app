@@ -45,7 +45,7 @@
 </head>
 
 <body>
-      <!-- Top nav bar (fixed) -->
+  <!-- Top nav bar (fixed) -->
   <nav class="nav-top">
     <div id="nav-logo">Smart To Do List</div>
     <div class="nav-login">
@@ -53,8 +53,9 @@
     </div>
   </nav>
 
-    <!-- Page-specific (main) content here -->
-    <main>
+  <!-- Main paige content -->
+  <main>
+    <!-- Add new todo form -->
     <section class="new-todo-container">
       <form id="form-input" action="/api/lists/" method="post">
         <p></p>
@@ -63,7 +64,7 @@
       </form>
     </section>
 
-
+    <!-- Show category tabs and containers -->
     <section id="categories">
       <ul>
         <li><a href="#tab-1">Read <span class="count"></span></a></li>
@@ -77,25 +78,12 @@
         <button><i class=" email fa-solid fa-envelope"></i></button>
       </div>
 
-      <!-- <div class="form-check nav-pills" id="tab-1">
+      <div class="form-check nav-pills" id="tab-1"></div>
+      <div class="form-check nav-pills" id="tab-2"></div>
+      <div class="form-check nav-pills" id="tab-3"></div>
+      <div class="form-check nav-pills" id="tab-4"></div>
 
-        <input class="form-check-input" id="tab-6" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-6">Harry Porter<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-
-      </div> -->
-
-        <div class="form-check nav-pills" id="tab-1">
-        </div>
-        <div class="form-check nav-pills" id="tab-2"></div>
-        <div class="form-check nav-pills" id="tab-3"></div>
-        <div class="form-check nav-pills" id="tab-4"></div>
-
-        <!-- <section class="show-completed">
-          <i class="fa-sharp fa-solid fa-arrow-down">Show completed</i>
-        </section> -->
-      </section>
+    </section>
 
 
 
@@ -121,7 +109,7 @@
       </section>
 
 
-    </main>
+  </main>
 
 </body>
 

@@ -2,13 +2,10 @@
 // const databaseAutoComplete = require('autoComplete.js');
 
 $(function () {
-
   console.log("app.js running");
 
   //create tab
   $('#categories').tabs();
-
-
 
   //create a new element for todo
   const createTodoElement = (todo) => {
@@ -19,42 +16,44 @@ $(function () {
       <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
       <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
     </div>
-`)
+    `);
+
     return $todo;
   }
 
- // create a new element for a completed todo
- const createCompleteTodoElement = (completeTodo) => {
-  let $completeTodo = $(`
-  <div class="${completeTodo.id}">
-    <input id="checkbox-1" type="checkbox" checked>
-    <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
-    <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
-    <button type="submit" class="btn btn-danger btn-sm delete" id="${completeTodo.id}">Delete</button>
-  </div>
-`)
-  return $completeTodo;
- };
+  // create a new element for a completed todo
+  const createCompleteTodoElement = (completeTodo) => {
+    let $completeTodo = $(`
+      <div class="${completeTodo.id}">
+        <input id="checkbox-1" type="checkbox" checked>
+        <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
+        <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
+        <button type="submit" class="btn btn-danger btn-sm delete" id="${completeTodo.id}">Delete</button>
+      </div>
+    `);
 
- const createShowCompletedElement = (category) => {
-  let $showCompleted = $(`
-    <section class="show-completed-${category}">
-      <div class="toggle-completed-${category}"><i class="fa-sharp fa-solid fa-arrow-down">Show completed</i></div>
-      <div class="completed-container-${category}" style="display:none"></div>
-    </section>
-  `)
+    return $completeTodo;
+  };
 
-  return $showCompleted;
- };
+  const createShowCompletedElement = (category) => {
+    let $showCompleted = $(`
+      <section class="show-completed-${category}">
+        <div class="toggle-completed-${category}"><i class="fa-sharp fa-solid fa-arrow-down">Show completed</i></div>
+        <div class="completed-container-${category}" style="display:none"></div>
+      </section>
+    `);
 
- const changeTodoStatus = (todo) => {
-  // listener and route for updating todo status
+    return $showCompleted;
+  };
+
+  // route for updating todo status
+  const changeTodoStatus = (todo) => {
     $.post(`/api/lists/${todo.id}/check`)
     .then((data) => {
       categoryCounter();
       loadTodos();
-    })
- };
+    });
+  };
 
   //load Todos by category
   const loadTodos = () => {
@@ -80,15 +79,16 @@ $(function () {
 
         });
 
-        // load hidden completed todos
+        // load completed todos section if there are any
         $.get(`api/lists/complete/${i}`, (completeTodos) => {
-          console.log(completeTodos);
           let category = i;
           if (completeTodos.length > 0) {
             $(`#tab-${category}`).append(createShowCompletedElement(category));
             $(`.toggle-completed-${category}`).click(function() {
               $(`.completed-container-${category}`).toggle();
             });
+
+            // load each todo element
             completeTodos.forEach(completeTodo => {
               $(`.completed-container-${category}`).append(createCompleteTodoElement(completeTodo));
               // listener and route for updating todo status
@@ -98,9 +98,9 @@ $(function () {
             });
 
           }
-        })
-      });
+        });
 
+      });
     }
   };
 
