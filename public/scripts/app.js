@@ -60,7 +60,6 @@ $(function () {
 
     for (let i = 1; i <= 4; i++) {
       $.get(`api/lists/${i}`, (todos) => {
-        console.log(todos);
         // renderTodos(todos);
         $(`#tab-${i}`).empty();
         todos.forEach(todo => {
@@ -75,7 +74,6 @@ $(function () {
           $(`.${todo.id} input`).on("click", function() {
             changeTodoStatus(todo);
           })
-          // });
 
         });
 
@@ -167,6 +165,5 @@ $(function () {
 
   loadTodos();
   categoryCounter();
-
 
 });
