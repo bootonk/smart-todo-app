@@ -82,32 +82,32 @@ $(function() {
       })
   });
 
-    //add count to category tab
-    const categoryCounter = () => {
-      for (let i = 1; i <= 4; i++) {
-        $.get(`api/lists/count/${i}`, (count) => {
-          //update count
-          $(`a[href='#tab-${i}'] .count`).text(`(${count})`);
-        });
-      }
-    };
+    // //add count to category tab
+    // const categoryCounter = () => {
+    //   for (let i = 1; i <= 4; i++) {
+    //     $.get(`api/lists/count/${i}`, (count) => {
+    //       //update count
+    //       $(`a[href='#tab-${i}'] .count`).text(`(${count})`);
+    //     });
+    //   }
+    // };
 
-    // add new todo
-    $('#form-input').on('submit', function(event) {
-      event.preventDefault();
-      let todoName = $('#inputText').val();
-      let category_id = 2;
+    // // add new todo
+    // $('#form-input').on('submit', function(event) {
+    //   event.preventDefault();
+    //   let todoName = $('#inputText').val();
+    //   let category_id = 2;
 
-      $.post('/api/lists', { todo_name: todoName, category_id: category_id })
+    //   $.post('/api/lists', { todo_name: todoName, category_id: category_id })
 
-        .then((data) => {
-          // add the new todo item to the DOM
-          let $todoItem = createTodoElement(data);
-          $(`#tab-${category_id}`).append($todoItem);
-          $('#inputText').val('');
-          categoryCounter();
-        });
-    });
+    //     .then((data) => {
+    //       // add the new todo item to the DOM
+    //       let $todoItem = createTodoElement(data);
+    //       $(`#tab-${category_id}`).append($todoItem);
+    //       $('#inputText').val('');
+    //       categoryCounter();
+    //     });
+    // });
 
     //auto complete
     const databaseAutoComplete = [
@@ -127,9 +127,9 @@ $(function() {
       source: databaseAutoComplete
     });
 
-  
+
 
   loadTodos();
-
+  categoryCounter();
 
 });
