@@ -2,7 +2,7 @@
 // const databaseAutoComplete = require('autoComplete.js');
 
 
-$(function () {
+$(function() {
 
   console.log("app.js running");
 
@@ -17,9 +17,9 @@ $(function () {
     <label for="checkbox-1">${todo.name}<span class="box"></span></label>
     <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
     <button type="submit" class="btn btn-danger btn-sm delete" id="${todo.id}">Delete</button>
-`)
+`);
     return $todo;
-  }
+  };
 
   //load Todos by category
   const loadTodos = () => {
@@ -30,9 +30,9 @@ $(function () {
         $(`#tab-${i}`).empty();
         todos.forEach(todo => {
           $(`#tab-${i}`).append(createTodoElement(todo));
-          $(`#${todo.id}`).click(function () {
+          $(`#${todo.id}`).click(function() {
             alert(`Alert for ${todo.id}.click() called.`);
-        });
+          });
         });
       });
 
@@ -50,7 +50,7 @@ $(function () {
   };
 
   // add new todo
-  $('#form-input').on('submit', function (event) {
+  $('#form-input').on('submit', function(event) {
     event.preventDefault();
     let todoName = $('#new-todo-input').val();
     let category_id = 1;
@@ -77,28 +77,28 @@ $(function () {
 
         // clear form
         $('#new-todo-input').val('');
-      })
+      });
   });
 
   // delete new todo
 
-      //auto complete
-    // const databaseAutoComplete = [
-    //   'Love in the Time of Cholera',
-    //   'To Kill a Mockingbird',
-    //   'The Great Gatsby',
-    //   'The Godfather',
-    //   'Lord of the Rings',
-    //   'Forrest Gump',
-    //   'The Matrix',
-    //   'Silk Sleep Mask',
-    //   'Silk Slippers',
-    //   'Silk Robe',
-    //   'Alphabet Soup',
-    // ];
-    // $("#new-todo-input").autocomplete({
-    //   source: databaseAutoComplete
-    // });
+  //auto complete
+  // const databaseAutoComplete = [
+  //   'Love in the Time of Cholera',
+  //   'To Kill a Mockingbird',
+  //   'The Great Gatsby',
+  //   'The Godfather',
+  //   'Lord of the Rings',
+  //   'Forrest Gump',
+  //   'The Matrix',
+  //   'Silk Sleep Mask',
+  //   'Silk Slippers',
+  //   'Silk Robe',
+  //   'Alphabet Soup',
+  // ];
+  // $("#new-todo-input").autocomplete({
+  //   source: databaseAutoComplete
+  // });
 
 
   loadTodos();
