@@ -21,25 +21,6 @@ $(function() {
     return $todo;
   };
 
-  //load Todos by category
-  const loadTodos = () => {
-
-    for (let i = 1; i <= 4; i++) {
-      $.get(`api/lists/${i}`, (todos) => {
-        // renderTodos(todos);
-        $(`#tab-${i}`).empty();
-        todos.forEach(todo => {
-          $(`#tab-${i}`).append(createTodoElement(todo));
-          $(`#${todo.id}`).click(function() {
-            $(`.${todo.id}`).hide("slide", 1000);
-            $(`#${todo.id}`).text(`${todo.id}-delete`); //deletedelete new todo
-          });
-        });
-      });
-
-    }
-  };
-
   //add count to category tab
   const categoryCounter = () => {
     for (let i = 1; i <= 4; i++) {
@@ -49,6 +30,26 @@ $(function() {
       });
     }
   };
+
+
+  //load Todos by category
+  const loadTodos = () => {
+    for (let i = 1; i <= 4; i++) {
+      $.get(`api/lists/${i}`, (todos) => {
+        // renderTodos(todos);
+        $(`#tab-${i}`).empty();
+        todos.forEach(todo => {
+          $(`#tab-${i}`).append(createTodoElement(todo));
+          $(`#${todo.id}`).click(function() {
+            $(`.${todo.id}`).hide("slide", 1000);
+            $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
+            categoryCounter();
+          });
+        });
+      });
+    }
+  };
+
 
   // add new todo
   $('#form-input').on('submit', function (event) {
@@ -126,9 +127,9 @@ $(function() {
       source: databaseAutoComplete
     });
 
+  
 
   loadTodos();
-  categoryCounter();
 
 
 });
