@@ -58,8 +58,9 @@
     </div>
   </nav>
 
-  <!-- Page-specific (main) content here -->
+  <!-- Main paige content -->
   <main>
+    <!-- Add new todo form -->
     <section class="new-todo-container">
       <form id="form-input" action="/api/lists/" method="post">
         <p></p>
@@ -68,7 +69,7 @@
       </form>
     </section>
 
-
+    <!-- Show category tabs and containers -->
     <section id="categories">
       <ul>
         <li><a href="#tab-1">Read <span class="count"></span></a></li>
@@ -82,12 +83,12 @@
         <button><i class=" email fa-solid fa-envelope"></i></button>
       </div>
 
-      <div class="form-check nav-pills" id="tab-1">
+      <div class="form-check nav-pills" id="tab-1"></div>
+      <div class="form-check nav-pills" id="tab-2"></div>
+      <div class="form-check nav-pills" id="tab-3"></div>
+      <div class="form-check nav-pills" id="tab-4"></div>
 
-        <input class="form-check-input" id="tab-6" type="checkbox">
-        <label class="form-check-label text-dark" for="tab-6">Harry Porter<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm">Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+    </section>
 
       </div>
 
@@ -97,14 +98,13 @@
       <div class="form-check nav-pills" id="tab-4"></div>
     </section>
 
-    <section class="show-completed">
+    <!-- <section class="show-completed">
       <i class="fa-sharp fa-solid fa-arrow-down">Show completed</i>
-    </section>
-
-
+    </section> -->
 
     <section id="uncategorized">
-      <a>We could not place these, add to the group of your choice</a>
+      <!-- commenting out for now to see where we land on item styling that we can apply via css for all areas -->
+      <!-- <a>We could not place these, add to the group of your choice</a>
       <div class="todo-uncategorized">
         <input class="form-check-input" type="checkbox" id="myCheckbox1">
         <label class="form-check-label text-dark" for="myCheckbox1">todo xxxx<span class="box"></span></label>
@@ -112,19 +112,16 @@
           <button type="submit" class="edit btn btn-warning btn-sm fa-sharp fa-solid fa-pen"></button>
           <button type="submit" class="delete btn btn-warning btn-sm fa-solid fa-circle-xmark"></button>
         </div>
-      </div>
-      <div class="todo-uncategorized">
-        <input class="form-check-input" type="checkbox" id="myCheckbox1">
-        <label class="form-check-label text-dark" for="myCheckbox1">todo xxxeeeeeex<span class="box"></span></label>
-        <div class="uncategorized-buttons-container">
-          <button type="submit" class="edit btn btn-warning btn-sm fa-sharp fa-solid fa-pen"></button>
-          <button type="submit" class="delete btn btn-warning btn-sm fa-solid fa-trash"></button>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button id="save" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
         </div>
-      </div>
+      </form>
+    </div>
+  </div>
+    </div>
+      </div> -->
     </section>
-
-
-  </main>
 
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -149,15 +146,12 @@
               <option value="1">Read</option>
             </select>
           </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button id="save" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
-          </div>
         </form>
       </div>
     </div>
   </div>
 
+  </main>
 
 </body>
 

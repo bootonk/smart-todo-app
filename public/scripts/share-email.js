@@ -34,7 +34,7 @@ $(function () {
         event.preventDefault();
         
         $.get(`api/lists/share`, (todos) => {
-        var recipient = 'no-reply@smart-todo.com';
+        var recipient = emailInput.val();
         var subject = `My todo List\n`;
         var body = messageTextarea.val();
 
