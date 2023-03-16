@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/todos');
 const { apiCalls } = require('../external-apis/api-calls');
+const db = require('/home/labber/lighthouse/smart-todo-app/db/connection.js');
 
 // GET api/lists/:category/share : show all lists by user
 router.get('/share', (req, res) => {
@@ -27,9 +28,9 @@ router.get('/share', (req, res) => {
 // GET api/lists/:category : show all lists by user
 router.get('/:category', (req, res) => {
   user_id = req.session.user_id;
-  console.log('cookie',user_id)
-  console.log('category id:',category_id);
-  category_id = req.params.category
+  console.log('cookie',user_id);
+  category_id = req.params.category;
+  console.log(category_id);
   userQueries.getActiveTodosByCategory(user_id, category_id)
     .then(lists => {
       res.json(lists);
@@ -44,8 +45,8 @@ router.get('/:category', (req, res) => {
 // GET api/lists/count/:category : show all lists by user
 router.get('/count/:category', (req, res) => {
   user_id = req.session.user_id;
-  console.log('cookie',user_id)
-  category_id = req.params.category
+  console.log('cookie',user_id);
+  category_id = req.params.category;
   console.log(category_id);
   userQueries.getCategoryTodoCount(user_id, category_id)
     .then(lists => {
@@ -64,39 +65,41 @@ router.post('/', (req, res) => {
   // category_id = req.body.category_id;
   todo_name = req.body.todo_name;
   apiCalls(todo_name)
-  .then((category_id) => {
-    userQueries.addTodo(user_id, category_id, todo_name)
-      .then(todo => {
-        res.json(todo);
-        console.log(todo)
-      })
-      .catch(err => {
-        res
-          .status(500)
-          .json({ error: err.message });
-      });
-  })
-  .catch()
+    .then((category_id) => {
+      userQueries.addTodo(user_id, category_id, todo_name)
+        .then(todo => {
+          res.json(todo);
+          console.log(todo);
+        })
+        .catch(err => {
+          res
+            .status(500)
+            .json({ error: err.message });
+        });
+    })
+    .catch();
 });
 
 // POST api/lists/:id/update
-router.get('/:id/update', (req, res) => {
-  user_id = req.session.user_id;
-  // userQueries.updateTodo()
-  //   .then(todo => {
-  //     res.json({ todo });
-  //   })
-  //   .catch(err => {
-  //     res
-  //       .status(500)
-  //       .json({ error: err.message });
-  //   });
+router.post('/:id/update', (req, res) => {
+  const user_id = req.session.user_id;
+  const todo_id = req.params.id;
+  const category_id = req.body.id;
+  userQueries.updateTodoCategory(category_id, user_id, todo_id)
+    .then(todo => {
+      res.json(todo[category_id]);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
 });
 
 // POST api/lists/:id/delete
 router.post('/:id/delete', (req, res) => {
   const user_id = req.session.user_id;
-  const todo_id = req.body.id;
+  const todo_id = req.params.id;
   userQueries.deleteTodo(user_id, todo_id)
     .then(todo => {
       delete db[todo_id];
