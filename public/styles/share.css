@@ -20,3 +20,101 @@
 .email {
   color: rgb(251, 6, 96);
 }
+
+/* POP-UP EMAIL */
+
+.popup-email {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-email .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.popup-email form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-email label {
+  margin-bottom: 10px;
+}
+
+.popup-email input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-email input[type="submit"] {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-email input[type="submit"]:hover {
+  background-color: #006B8F;
+}
+
+
+
+
+/* POP-UP TEXT MESSAGE */
+
+.popup-text-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.popup-text-message .close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+}
+
+.popup-text-message form {
+  display: flex;
+  flex-direction: column;
+}
+
+.popup-text-message label {
+  margin-bottom: 10px;
+}
+
+.popup-text-message input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.popup-text-message input[type="submit"] {
+  background-color: #008CBA;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.popup-text-message input[type="submit"]:hover {
+  background-color: #006B8F;
+}
+

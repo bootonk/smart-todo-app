@@ -10,12 +10,26 @@ const router  = express.Router();
 const userQueries = require('../db/queries/todos');
 const { apiCalls } = require('../external-apis/api-calls');
 
+// GET api/lists/:category/share : show all lists by user
+router.get('/share', (req, res) => {
+  user_id = req.session.user_id;
+  userQueries.getAllListsByUsers(user_id)
+    .then(lists => {
+      res.json(lists);
+    })
+    .catch(err => {
+      res
+        .status(500)
+        .json({ error: err.message });
+    });
+});
+
 // GET api/lists/:category : show all lists by user
 router.get('/:category', (req, res) => {
   user_id = req.session.user_id;
   console.log('cookie',user_id)
+  console.log('category id:',category_id);
   category_id = req.params.category
-  console.log(category_id);
   userQueries.getActiveTodosByCategory(user_id, category_id)
     .then(lists => {
       res.json(lists);

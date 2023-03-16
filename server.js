@@ -9,6 +9,8 @@ const cookieSession = require('cookie-session');
 const bodyParser = require('body-parser');
 
 
+
+
 const PORT = process.env.PORT || 8080;
 const app = express();
 
@@ -49,6 +51,8 @@ const usersRoutes = require('./routes/users');
 const listsApiRoutes = require('./routes/lists-api')
 const loginRoutes = require('./routes/login')
 const logoutRoutes = require('./routes/logout')
+const textMessageRoutes = require('./routes/text-message')
+
 
 
 
@@ -62,6 +66,8 @@ app.use('/users', usersRoutes);
 app.use('/api/lists', listsApiRoutes);
 app.use('/login', loginRoutes);
 app.use('/logout', logoutRoutes);
+app.use('/text-message', textMessageRoutes);
+
 
 
 

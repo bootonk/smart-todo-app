@@ -3,9 +3,13 @@ const db = require('../connection');
 //
 // Showing Todos
 //
-const getAllListsByUsers = () => {
-  // not sure what we want to output here
-};
+const getAllListsByUsers = (user_id) => {
+  const values = [`${user_id}`];
+  return db.query('SELECT * FROM todos WHERE user_id = $1;', values)
+    .then(data => {
+      return data.rows;
+    });
+  };
 
 const getActiveTodosByCategory = (user_id, category_id) => {
   const values = [`${user_id}`, `${category_id}`];

@@ -104,8 +104,9 @@ $(function () {
     // });
 
 
-  loadTodos();
-  categoryCounter();
+    loadTodos();
+    categoryCounter();
+    
 
 
 });
