@@ -9,6 +9,7 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/todos');
 const { apiCalls } = require('../external-apis/api-calls');
+const db = require('/home/labber/lighthouse/smart-todo-app/db/connection.js');
 
 // GET api/lists/:category : show all lists by user
 router.get('/:category', (req, res) => {

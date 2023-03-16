@@ -16,7 +16,7 @@ $(function() {
       <input id="checkbox-1" type="checkbox">
       <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
       <button type="submit" class="btn btn-sm btn-warning edit" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-      <button type="submit" class="btn btn-sm btn-danger" id="${todo.id}">Delete</button>
+      <button type="submit" class="btn btn-sm btn-danger delete" id="${todo.id}">Delete</button>
     </div>
 `);
     return $todo;
@@ -88,32 +88,43 @@ $(function() {
     event.preventDefault();
     const todoName = $(event.target).parent().find('label').text(); //find todo name
     const todoId = $(event.target).parent().attr('class'); //find todo id
-    $('#Input1').val(todoName);
-    $('#todoId').val(todoId);
+    $('#Input1').val(todoName); //update name
+    $('#todoId').val(todoId); //assign the todoId to modal
   });
 
   $('form').on('submit', function(event) {
     event.preventDefault();
-    const newC = $('#updateCategory').find(":selected").val();
-    $('#exampleModal').hide("slide", 1000);
-    const id = $('#todoId').val();
+    const newC = $('#updateCategory').find(":selected").val(); //new category id
+    $('#exampleModal').hide("slide", 1000);  //model move away
+    const id = $('#todoId').val();  //
 
     $.ajax({
       type: 'POST',
       url: `/api/lists/${id}/update`,
-      data: { 'id': newC },
-      dataType: 'html',
+      data: { 'id': newC },  //need to make the format match
+      dataType: 'html',  //need to fire html, json does not work
       success: () => {
-        loadTodos();
+        loadTodos();   //refresh the page
+        categoryCounter();
       }
     });
 
   });
 
   //delete to do
-  const deleteTodo = () => {
-    
-  };
+  $('.delete').on('click', function(event) {
+    event.preventDefault();
+    const todoId = $(event.target).parent().attr('class'); //find todo id
+    $.ajax({
+      type: 'POST',
+      url: `/api/lists/${todoId}/delete`,
+      data: { 'id': newC },  //need to make the format match
+      dataType: 'html',  //need to fire html, json does not work
+      success: () => {
+        loadTodos();   //refresh the page
+      }
+    });
+  });
 
 
 
