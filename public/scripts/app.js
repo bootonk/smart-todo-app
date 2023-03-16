@@ -79,11 +79,11 @@ $(function() {
 
   //create Uncategorized Elements
   const createUncategorizedElements = () => {
+    $(`#uncategorized`).empty();
+    $('#uncategorized').append(createUncategorizedContainer());
     $.get(`api/lists/5`, (uncategorizedTodos) => {
       if (uncategorizedTodos.length > 0) {
-        $(`#uncategorized`).empty();
         $(`#uncategorized-container`).empty();
-        $('#uncategorized').append(createUncategorizedContainer());
         uncategorizedTodos.forEach(uncategorizedTodo => {
           $('.uncategorized-container').append(createTodoElement(uncategorizedTodo));
         })
@@ -94,6 +94,7 @@ $(function() {
   //load Todos by category
   const loadTodos = () => {
     console.log("hello");
+    createUncategorizedElements();
     for (let i = 1; i <= 5; i++) {
       $.get(`api/lists/${i}`, (todos) => {
         // renderTodos(todos);
@@ -122,10 +123,18 @@ $(function() {
         $.get(`api/lists/complete/${i}`, (completeTodos) => {
           let category = i;
           if (completeTodos.length > 0) {
-            $(`#tab-${category}`).append(createShowCompletedElement(category));
-            $(`.toggle-completed-${category}`).click(function() {
-              $(`.completed-container-${category}`).toggle();
-            });
+            if (category <= 4) {
+              $(`#tab-${category}`).append(createShowCompletedElement(category));
+              $(`.toggle-completed-${category}`).click(function() {
+                $(`.completed-container-${category}`).toggle();
+              });
+            } else if (category === 5) {
+              console.log($('.uncategorized-container'));
+              $(`.uncategorized-container`).append(createShowCompletedElement(5));
+              $(`.toggle-completed-${category}`).click(function() {
+                $(`.completed-container-${category}`).toggle();
+              });
+            }
 
             // load each todo element
             completeTodos.forEach(completeTodo => {
@@ -142,7 +151,7 @@ $(function() {
       });
     }
 
-    createUncategorizedElements();
+    // createUncategorizedElements();
 
   };
 
