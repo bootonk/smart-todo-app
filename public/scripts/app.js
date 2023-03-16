@@ -25,7 +25,7 @@ $(function() {
 
   //load Todos by category
   const loadTodos = () => {
-    console.log("hello");
+
     for (let i = 1; i <= 4; i++) {
       $.get(`api/lists/${i}`, (todos) => {
         // renderTodos(todos);
@@ -34,8 +34,6 @@ $(function() {
           $(`#tab-${i}`).append(createTodoElement(todo));
           $(`#${todo.id}`).click(function() {
             $(`.${todo.id}`).hide("slide", 1000); //delete todo
-            // $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
-
           });
         });
       });
@@ -114,10 +112,10 @@ $(function() {
   //delete to do
   $('.delete').on('click', function(event) {
     event.preventDefault();
-    const todoId = $(event.target).parent().attr('class'); //find todo id
+    const id = $('#todoId').val(); //find todo id
     $.ajax({
       type: 'POST',
-      url: `/api/lists/${todoId}/delete`,
+      url: `/api/lists/${id}/delete`,
       data: { 'id': newC },  //need to make the format match
       dataType: 'html',  //need to fire html, json does not work
       success: () => {
