@@ -21,7 +21,7 @@ const apiCalls = function(searchTodo) {
           }
 
           // for Buy category
-          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats'];
+          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats', 'Gym'];
 
           // for Eat category
           const eatResults = ['restaurants', 'food', 'gourmet', 'italian', 'vegan', 'mexican', 'burgers'];
@@ -163,9 +163,10 @@ const callWalmartDatabase = function(searchTodo) {
   return axios.request(options)
     .then(function(response) {
       const results = response.autocomplete_results[0].suggestion;
+      console.log('From Walkmart', { results });
       return results;
     }).catch(error => {
-      console.log('Cannot find in Walmart', error);
+      console.log('Cannot find in Walmart', error.message);
     });
 };
 

@@ -57,7 +57,6 @@ $(function() {
     let category_id = 1;
 
     $.post('/api/lists', { todo_name: todoName, category_id: category_id })
-
       .then((data) => {
         // update category count
         categoryCounter();
@@ -145,8 +144,8 @@ $(function() {
   // });
 
 
-    loadTodos();
-    categoryCounter();
+  loadTodos();
+  categoryCounter();
     
 
 
