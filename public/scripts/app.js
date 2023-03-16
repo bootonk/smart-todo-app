@@ -12,16 +12,16 @@ $(function() {
   const createTodoElement = (todo) => {
     // console.log('category', todo);
     let $todo = $(`
-    <div class="${todo.id} todo-element">
+    <article class="${todo.id} todo-element">
       <div class="todo-item">
         <input id="checkbox-1" type="checkbox">
         <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
       </div>
       <div class="todo-options">
-        <button type="submit" class="edit-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
+        <button type="submit" class="edit-button edit-${todo.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
         <button type="submit" class="delete-button delete" id="${todo.id}"><i class="fa-solid fa-trash"></i></button>
       </div>
-    </div>
+    </article>
     `);
 
     return $todo;
@@ -33,11 +33,11 @@ $(function() {
       <div class="${completeTodo.id} todo-element">
         <div class="todo-item">
           <input id="checkbox-1" type="checkbox" checked>
-          <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
+          <label for="checkbox-1" data-category="${todo.category_id}">${completeTodo.name}<span class="box"></span></label>
         </div>
         <div class="todo-options">
-          <button type="submit" class="edit-button"><i class="fa-solid fa-pen"></i></button>
-          <button type="submit" id="${completeTodo.id}" class="delete-button"><i class="fa-solid fa-trash"></i></button>
+          <button type="submit" class="edit-button edit-${completeTodo.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
+          <button type="submit" class="delete-button delete" id="${completeTodo.id}"><i class="fa-solid fa-trash"></i></button>
         </div>
       </div>
     `);
@@ -86,6 +86,17 @@ $(function() {
         $(`#uncategorized-container`).empty();
         uncategorizedTodos.forEach(uncategorizedTodo => {
           $('.uncategorized-container').append(createTodoElement(uncategorizedTodo));
+        });
+
+        $('#uncategorized').on('click', ".edit-button", function(event) {
+          event.preventDefault();
+          const todoIdArr = $(event.target).parent('button').attr('class').replaceAll('-', ' ').split(' '); //find todo id
+          const todoId = todoIdArr[3];
+          const todoName = $(event.target).parents().find(`.${todoId} .todo-item label`).text(); //find todo name
+          console.log('todoName:', todoName);
+          console.log('todoId:', todoId);
+          $('#Input1').val(todoName); //update name
+          $('#todoId').val(todoId); //assign the todoId to modal
         });
       }
     });
@@ -201,11 +212,17 @@ $(function() {
       });
   });
 
-  // edit todo
-  $('#categories').on('click', ".edit", function(event) {
+  loadTodos();
+  categoryCounter();
+
+  // edit modal with todo_id and todo_name
+  $('#categories').on('click', ".edit-button", function(event) {
     event.preventDefault();
-    const todoName = $(event.target).parent().find('label').text(); //find todo name
-    const todoId = $(event.target).parent().attr('class'); //find todo id
+    const todoIdArr = $(event.target).parent('button').attr('class').replaceAll('-', ' ').split(' '); //find todo id
+    const todoId = todoIdArr[3];
+    const todoName = $(event.target).parents().find(`.${todoId} .todo-item label`).text(); //find todo name
+    console.log('todoName:', todoName);
+    console.log('todoId:', todoId);
     $('#Input1').val(todoName); //update name
     $('#todoId').val(todoId); //assign the todoId to modal
   });
@@ -248,10 +265,6 @@ $(function() {
   // $("#new-todo-input").autocomplete({
   //   source: databaseAutoComplete
   // });
-
-
-  loadTodos();
-  categoryCounter();
 
 
 });
