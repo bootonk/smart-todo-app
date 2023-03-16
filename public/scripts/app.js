@@ -33,7 +33,7 @@ $(function() {
       <div class="${completeTodo.id} todo-element">
         <div class="todo-item">
           <input id="checkbox-1" type="checkbox" checked>
-          <label for="checkbox-1" data-category="${todo.category_id}">${completeTodo.name}<span class="box"></span></label>
+          <label for="checkbox-1" data-category="${completeTodo.category_id}">${completeTodo.name}<span class="box"></span></label>
         </div>
         <div class="todo-options">
           <button type="submit" class="edit-button edit-${completeTodo.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
@@ -122,7 +122,7 @@ $(function() {
                   loadTodos();
                 });
             });
- 
+
           });
 
           // listener and route for updating todo status
