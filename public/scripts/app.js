@@ -246,18 +246,21 @@ $(function() {
 
   });
 
-  const createWelcome = (user_id) => {
-    let $welcome = $(`
+  const createWelcome = () => {
+    $.get('/api/users/whoami', (data) => {
+      let $welcome = $(`
       <div class="welcome">
-        <p>What TO-DO today? ${user_id}</p>
+        <p>What TO-DO today? ${data.user_id}</p>
       </div>
     `);
-    return $welcome;
+      $("main").prepend($welcome);
+    });
+   
   };
 
-  $('#nav-login').on('click', function(user_id) {
-    $(".container-fluid").append(createWelcome(user_id));
-    $(".container-fluid").show("blind", 1000);
+  $('#nav-login').on('click', function(event) {
+    createWelcome();
+    $("main").show("blind", 1000);
   });
 
 

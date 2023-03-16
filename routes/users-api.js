@@ -22,5 +22,9 @@ router.get('/', (req, res) => {
 
 });
 
+router.get('/whoami', (req, res) => {
+  res.json({ user_id: req.session.user_id });
+});
+
 
 module.exports = router;
