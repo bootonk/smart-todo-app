@@ -210,40 +210,6 @@ $(function() {
       });
   });
 
-  // //create a new element for todo
-  // const createTodoElement = (todo) => {
-  //   // console.log('category', todo);
-  //   let $todo = $(`
-  //   <article class="${todo.id} todo-element">
-  //     <div class="todo-item">
-  //       <input id="checkbox-1" type="checkbox">
-  //       <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
-  //     </div>
-  //     <div class="todo-options">
-  //       <button type="submit" class="edit-button edit-${todo.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
-  //       <button type="submit" class="delete-button delete" id="${todo.id}"><i class="fa-solid fa-trash"></i></button>
-  //     </div>
-  //   </article>
-  //   `);
-
-  //   return $todo;
-  // };
-
-  // // create a new element for a completed todo
-  // const createCompleteTodoElement = (completeTodo) => {
-  //   let $completeTodo = $(`
-  //     <div class="${completeTodo.id} todo-element">
-  //       <div class="todo-item">
-  //         <input id="checkbox-1" type="checkbox" checked>
-  //         <label for="checkbox-1" data-category="${todo.category_id}">${completeTodo.name}<span class="box"></span></label>
-  //       </div>
-  //       <div class="todo-options">
-  //         <button type="submit" class="edit-button edit-${completeTodo.id}" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
-  //         <button type="submit" class="delete-button delete" id="${completeTodo.id}"><i class="fa-solid fa-trash"></i></button>
-  //       </div>
-  //     </div>
-  //   `);
-
   loadTodos();
   categoryCounter();
 
