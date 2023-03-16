@@ -2,37 +2,61 @@
   display: block;
   width:50%;
   text-align: left;
-  margin: 10px auto;
+  margin: 20px auto;
   background-color: transparent;
   border: none;
   z-index: 0;
 
 }
 
+#categories ul li a{
+  font-family: 'Yeseva One', cursive;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  margin-right: 15px;
+  color: black;
+}
+
+#categories ul li a:focus {
+  color:#fff3df
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+  margin-left: -3px;
+  margin-bottom: -2px;
+}
+
+ui-tabs-panel {
+  border-top-right-radius: 5px;
+}
 /* Set background colors for tabs */
 #categories ul li:nth-child(1) a {
-  background-color: #cf92af
-  
+  background-color: #b1d5d5;
 }
 #categories ul li:nth-child(2) a {
-  background-color: #e4b1af
+  background-color: #86bebe;
 }
 #categories ul li:nth-child(3) a {
-  background-color: #e5d1bd
+  background-color:#579595;
 }
 #categories ul li:nth-child(4) a {
-  background-color:#eaeace
+  background-color: #127475;
+}
+
+#categories .ui-widget-header {
+  background-color: #fff3df;
+  border: none;
 }
 
 /* Set background colors for tab contents */
 #tab-1.ui-tabs-panel {
-  background-color: #FDF6FF;}
+  background-color: #b1d5d5;}
 #tab-2.ui-tabs-panel {
-  background-color: #FDF6FF;}
+  background-color: #86bebe;}
 #tab-3.ui-tabs-panel {
-  background-color: #FDF6FF;}
+  background-color: #579595;}
 #tab-4.ui-tabs-panel {
-  background-color: #FDF6FF;}
+  background-color: #127475;}
 
 
 /* Set active tab background color for each tab
@@ -56,11 +80,54 @@
   flex-direction: column;
   width:50%;
   text-align: left;
-  margin: 10px auto;
-  background-color:  #FDF6FF;
-  font-size: 20px;
+  margin: .5rem auto;
+  background-color:  #fff3df;
+  font-size: 1em;
+  border-radius: 5px;
+  border: 3px solid #127475;
 
-  
+
+}
+
+#uncategorized .uncategorized-block{
+ padding: 1em 1.4em;
+}
+
+.uncategorized-block p {
+  font-family: 'Yeseva One', cursive;
+  color:#127475;
+}
+
+.todo-element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid black;
+  padding-bottom: 0px;
+  color: black;
+}
+
+.completed-element {
+  margin-top: 2rem;
+}
+
+.completed-element-icon {
+  display: flex !important;
+  color: black;
+}
+
+.completed-element-text {
+  font-family:'Yeseva One', cursive;
+  margin-left: 24px;
+  color: black;
+}
+
+label {
+ margin-left: 1rem;
+ margin-top: 0.5rem;
+ margin-right: 8rem;
+ margin-bottom: 0.5rem;
+ font-family: 'Josefin Sans', sans-serif;
 }
 
 .todo-uncategorized {
@@ -78,6 +145,7 @@
   flex-direction: row;
   justify-content: space-evenly;
 }
+
 
 .delete {
   background-color: rgb(255, 0, 0);
@@ -104,6 +172,27 @@
 .form-check-label {
   width: 40%;
 }
+
+.edit-button, .delete-button {
+  border: none;
+  background: none;
+}
+
+.fa-pen {
+  color: #700808;
+}
+
+.fa-trash {
+  color: #F2542D;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+  border: none;
+  background: none;
+}
+
+
+
 
 
 

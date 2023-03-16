@@ -12,11 +12,15 @@ $(function() {
   const createTodoElement = (todo) => {
     // console.log('category', todo);
     let $todo = $(`
-    <div class="${todo.id}">
-      <input id="checkbox-1" type="checkbox">
-      <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
-      <button type="submit" class="btn btn-sm btn-warning edit" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
-      <button type="submit" class="btn btn-sm btn-danger delete" id="${todo.id}">Delete</button>
+    <div class="${todo.id} todo-element">
+      <div class="todo-item">
+        <input id="checkbox-1" type="checkbox">
+        <label for="checkbox-1" data-category="${todo.category_id}">${todo.name}<span class="box"></span></label>
+      </div>
+      <div class="todo-options">
+        <button type="submit" class="edit-button" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-pen"></i></button>
+        <button type="submit" class="delete-button delete" id="${todo.id}"><i class="fa-solid fa-trash"></i></button>
+      </div>
     </div>
     `);
 
@@ -27,11 +31,15 @@ $(function() {
   // create a new element for a completed todo
   const createCompleteTodoElement = (completeTodo) => {
     let $completeTodo = $(`
-      <div class="${completeTodo.id}">
-        <input id="checkbox-1" type="checkbox" checked>
-        <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
-        <button type="submit" class="btn btn-warning btn-sm" >Edit</button>
-        <button type="submit" class="btn btn-danger btn-sm delete" id="${completeTodo.id}">Delete</button>
+      <div class="${completeTodo.id} todo-element">
+        <div class="todo-item">
+          <input id="checkbox-1" type="checkbox" checked>
+          <label for="checkbox-1">${completeTodo.name}<span class="box"></span></label>
+        </div>
+        <div class="todo-options">
+          <button type="submit" class="edit-button"><i class="fa-solid fa-pen"></i></button>
+          <button type="submit" id="${completeTodo.id}" class="delete-button"><i class="fa-solid fa-trash"></i></button>
+        </div>
       </div>
     `);
 
@@ -40,8 +48,8 @@ $(function() {
 
   const createShowCompletedElement = (category) => {
     let $showCompleted = $(`
-      <section class="show-completed-${category}">
-        <div class="toggle-completed-${category}"><i class="fa-sharp fa-solid fa-arrow-down">Show completed</i></div>
+      <section class="show-completed-${category} completed-element">
+        <div class="toggle-completed-${category}"><i class="fa-sharp fa-solid fa-arrow-down completed-element-icon"><p class="completed-element-text">show completed</p></i></div>
         <div class="completed-container-${category}" style="display:none"></div>
       </section>
     `);
@@ -60,7 +68,7 @@ $(function() {
 
   const createUncategorizedContainer = () => {
     let $uncategorizedContainer = $(`
-      <div>
+      <div class="uncategorized-block">
         <p>Island of Misfit Todos</p>
         <div class="uncategorized-container"></div>
       </div>

@@ -16,9 +16,10 @@ html {
  body {
   color: #545149;
   height: 100%;
-  background-color: #f4f1ec;
+  background-color: #fff3df;
   /* font-size: 25px; */
   display: flex;
+  font-family: 'Josefin Sans', sans-serif;
 }
 
 nav {
@@ -32,12 +33,12 @@ nav {
 main {
   width:90%;
   position: relative;
-  background-color: #f4f1ec;
+  background-color: #fff3df;
   text-align: center;
   margin: auto;
   display: flex;
   justify-content: center;
-  margin-top: 14%;
+  margin-top: 10%;
   margin-left: 5%;
   margin-right: 5%;
   flex-direction: column;

@@ -4,8 +4,11 @@
   background-color: #FDF6FF;
   justify-content: flex-end;
   padding-top: 2%;
-  padding-right: 2%;
-  color: rgb(102, 99, 99);
+  padding-bottom: 2%;
+  padding-right: 4%;
+  color: black;
+  font-family: 'Yeseva One', cursive;
+  align-items: end;
 }
 
 .share button {
@@ -14,11 +17,13 @@
 }
 
 .text-message {
-  color: rgb(251, 6, 96);
+  color: #fbba06;
+  margin-left: 10px;
+  margin-right: 5px;
 }
 
 .email {
-  color: rgb(251, 6, 96);
+  color: #fbba06;
 }
 
 /* POP-UP EMAIL */
