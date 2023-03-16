@@ -124,8 +124,28 @@ const callTvmaze = function(searchTodo) {
 
   return axios.get(endpoint)
     .then(response => {
-      const name = response.data[0].show.name;
+      const searchTvShow = searchTvShow.toLowerCase().split(' ');
+      const name = response.data[0].show.name.toLowerCase().split(' ');
       console.log('TVmaze Results:',name);
+
+      let wordCount = 0;
+      for (let word of searchTvShow) {
+        if (name.includes(word)) {
+          wordCount++;
+        }
+
+        console.log(wordCount, name.length);
+        if (searchTvShow.length === 1 && wordCount === name.length) {
+          return name;
+        } else if (searchTvShow.length > 1 && wordCount >= (name.length / 2)) {
+          return name;
+        }
+
+      }
+      return undefined;
+      
+
+
       return name;
     })
     .catch(error => {
@@ -139,9 +159,24 @@ const callOpenMovieDatabase = function(searchTodo) {
 
   return axios.get(endpoint)
     .then(response => {
-      const title = response.data.Search[0].Title;
+      const searchMovie = searchTodo.toLowerCase().split(' ');
+      const title = response.data.toLowerCase().split(' ');
       console.log('OpenMovieDatabase Results:',title);
-      return title;
+      
+      let wordCount = 0;
+      for (let word of searchMovie) {
+        if (title.includes(word)) {
+          wordCount++;
+        }
+
+        console.log(wordCount, title.length);
+        if (searchMovie.length === 1 && wordCount === title.length) {
+          return title;
+        } else if (searchMovie.length > 1 && wordCount >= (title.length / 2)) {
+          return title;
+        }
+      }
+      return undefined;
     })
     .catch(error => {
       console.log('Cannot find in OpenMovieDatabase');
@@ -170,7 +205,7 @@ const callWalmartDatabase = function(searchTodo) {
     });
 };
 
-apiCalls('risotto');
+apiCalls('egg');
 
 
 module.exports = { apiCalls };
