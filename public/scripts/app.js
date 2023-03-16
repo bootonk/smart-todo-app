@@ -23,7 +23,6 @@ $(function() {
     return $todo;
   };
 
-
   // create a new element for a completed todo
   const createCompleteTodoElement = (completeTodo) => {
     let $completeTodo = $(`
@@ -58,6 +57,7 @@ $(function() {
     });
   };
 
+  //create Uncategorized Container
   const createUncategorizedContainer = () => {
     let $uncategorizedContainer = $(`
       <div>
@@ -69,6 +69,7 @@ $(function() {
     return $uncategorizedContainer;
   };
 
+  //create Uncategorized Elements
   const createUncategorizedElements = () => {
     $.get(`api/lists/5`, (uncategorizedTodos) => {
       if (uncategorizedTodos.length > 0) {
@@ -85,16 +86,21 @@ $(function() {
   //load Todos by category
   const loadTodos = () => {
     console.log("hello");
-    for (let i = 1; i <= 4; i++) {
+    for (let i = 1; i <= 5; i++) {
       $.get(`api/lists/${i}`, (todos) => {
         // renderTodos(todos);
         $(`#tab-${i}`).empty();
         todos.forEach(todo => {
           $(`#tab-${i}`).append(createTodoElement(todo));
+
+          // delete todo
           $(`#${todo.id}`).click(function () {
-            $(`.${todo.id}`).hide("slide", 1000);
-            // $(`#${todo.id}`).text(`${todo.id}-delete`); //delete todo
-            categoryCounter();
+            console.log(`clicked ${todo.id}`)
+            $.post(`/api/lists/${todo.id}/delete`)
+            .then((data) => {
+              categoryCounter();
+              loadTodos();
+            });
           });
 
           // listener and route for updating todo status
@@ -203,21 +209,6 @@ $(function() {
       }
     });
 
-  });
-
-  //delete to do
-  $('.delete').on('click', function(event) {
-    event.preventDefault();
-    const todoId = $(event.target).parent().attr('class'); //find todo id
-    $.ajax({
-      type: 'POST',
-      url: `/api/lists/${todoId}/delete`,
-      data: { 'id': newC },  //need to make the format match
-      dataType: 'html',  //need to fire html, json does not work
-      success: () => {
-        loadTodos();   //refresh the page
-      }
-    });
   });
 
 
