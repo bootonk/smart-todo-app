@@ -104,7 +104,7 @@ $(function() {
 
           // delete todo
           $(`#${todo.id}`).click(function() {
-            console.log(`clicked ${todo.id}`);
+            // console.log(`clicked ${todo.id}`);
             $.post(`/api/lists/${todo.id}/delete`)
               .then((data) => {
                 categoryCounter();
@@ -226,6 +226,20 @@ $(function() {
     });
 
   });
+
+  //create welcome
+  const welcome = () => {
+    
+    let $welcome = $(`
+    <div class="welcome">
+      <p>What would like To Do, ${}</p>
+    </div>
+    `);
+
+    return $welcome;
+  };
+
+
 
 
 
