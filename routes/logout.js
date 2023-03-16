@@ -6,10 +6,10 @@
 const express = require('express');
 const router  = express.Router();
 
+//GET /logout/
 router.get('/', (req, res) => {
   req.session = null; // destroy the session
   res.clearCookie('session'); // clear the session cookie
-  // res.redirect("/api/lists")
   res.send('logout test')
 
 });
