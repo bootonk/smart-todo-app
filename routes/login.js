@@ -10,10 +10,10 @@ router.get('/:id', (req, res) => {
   req.session.user_id = req.params.id;
   // const cookie = req.session.user_id
   // console.log(cookie)
+  
   res.redirect("/")
 
 });
-
 
 
 module.exports = router;
