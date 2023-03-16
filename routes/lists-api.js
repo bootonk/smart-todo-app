@@ -67,15 +67,12 @@ router.post('/', (req, res) => {
 
 // POST api/lists/:id/update
 router.post('/:id/update', (req, res) => {
-  console.log('req.body',req.body)
   const user_id = req.session.user_id;
   const todo_id = req.params.id;
   const category_id = req.body.id;
-  console.log({category_id});
   userQueries.updateTodoCategory(category_id, user_id, todo_id)
     .then(todo => {
       res.json(todo[category_id]);
-      console.log('categoryName', todo[category_id]);
     })
     .catch(err => {
       res

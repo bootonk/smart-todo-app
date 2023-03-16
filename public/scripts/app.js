@@ -86,26 +86,17 @@ $(function() {
   // edit todo
   $('#categories').on('click', ".edit", function(event) {
     event.preventDefault();
-    const todoName = $(event.target).parent().find('label').text();
-    const todoId = $(event.target).parent().attr('class');
+    const todoName = $(event.target).parent().find('label').text(); //find todo name
+    const todoId = $(event.target).parent().attr('class'); //find todo id
     $('#Input1').val(todoName);
     $('#todoId').val(todoId);
-    // const category = $(event.target).parent().find('label').data('category');
-   
   });
 
   $('form').on('submit', function(event) {
     event.preventDefault();
-    // const todo_id = $(event.target).parent().find('div').data();
-    console.log($(event));
     const newC = $('#updateCategory').find(":selected").val();
-    console.log(newC);
     $('#exampleModal').hide("slide", 1000);
     const id = $('#todoId').val();
-    console.log('id', id);
-
-    const newUpdate = $('#updateCategory').serialize();
-    const category = $(event.target).parent().find('label').data('category');
 
     $.ajax({
       type: 'POST',
@@ -113,7 +104,6 @@ $(function() {
       data: { 'id': newC },
       dataType: 'html',
       success: () => {
-        console.log('success')
         loadTodos();
       }
     });
@@ -122,7 +112,7 @@ $(function() {
 
   //delete to do
   const deleteTodo = () => {
-
+    
   };
 
 
