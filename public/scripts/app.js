@@ -25,7 +25,7 @@ $(function() {
 
   //load Todos by category
   const loadTodos = () => {
-
+    console.log("hello");
     for (let i = 1; i <= 4; i++) {
       $.get(`api/lists/${i}`, (todos) => {
         // renderTodos(todos);
@@ -39,7 +39,6 @@ $(function() {
           });
         });
       });
-
     }
   };
 
@@ -88,30 +87,36 @@ $(function() {
   $('#categories').on('click', ".edit", function(event) {
     event.preventDefault();
     const todoName = $(event.target).parent().find('label').text();
+    const todoId = $(event.target).parent().attr('class');
     $('#Input1').val(todoName);
-    const category = $(event.target).parent().find('label').data('category');
+    $('#todoId').val(todoId);
+    // const category = $(event.target).parent().find('label').data('category');
    
   });
 
-  $('#save').on('click', function(event) {
+  $('form').on('submit', function(event) {
     event.preventDefault();
-    const todo_id = $(event.target).parent().find('div').data();
-    console.log($(event.target).parent())
-    const newC = $('#updateCategory').val();
+    // const todo_id = $(event.target).parent().find('div').data();
+    console.log($(event));
+    const newC = $('#updateCategory').find(":selected").val();
+    console.log(newC);
     $('#exampleModal').hide("slide", 1000);
-    
+    const id = $('#todoId').val();
+    console.log('id', id);
+
     const newUpdate = $('#updateCategory').serialize();
     const category = $(event.target).parent().find('label').data('category');
 
-    // $.ajax({
-    //   method: 'POST',
-    //   url: `/${todo_id}/update`,
-    //   data: newC,
-    //   sucess: () => {
-    //     $('#updateCategory').val();
-    //     loadTodos();
-    //   }
-    // });
+    $.ajax({
+      type: 'POST',
+      url: `/api/lists/${id}/update`,
+      data: { 'id': newC },
+      dataType: 'html',
+      success: () => {
+        console.log('success')
+        loadTodos();
+      }
+    });
 
   });
 

@@ -67,11 +67,12 @@ router.post('/', (req, res) => {
 
 // POST api/lists/:id/update
 router.post('/:id/update', (req, res) => {
+  console.log('req.body',req.body)
   const user_id = req.session.user_id;
   const todo_id = req.params.id;
   const category_id = req.body.id;
   console.log({category_id});
-  userQueries.updateTodo(todo_id, category_id)
+  userQueries.updateTodoCategory(category_id, user_id, todo_id)
     .then(todo => {
       res.json(todo[category_id]);
       console.log('categoryName', todo[category_id]);
@@ -86,7 +87,7 @@ router.post('/:id/update', (req, res) => {
 // POST api/lists/:id/delete
 router.post('/:id/delete', (req, res) => {
   const user_id = req.session.user_id;
-  const todo_id = req.body.id;
+  const todo_id = req.params.id;
   userQueries.deleteTodo(user_id, todo_id)
     .then(todo => {
       delete db[todo_id];
