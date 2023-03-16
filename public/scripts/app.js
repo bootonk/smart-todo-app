@@ -248,9 +248,10 @@ $(function() {
 
   const createWelcome = () => {
     $.get('/api/users/whoami', (data) => {
+      console.log(data);
       let $welcome = $(`
       <div class="welcome">
-        <p>What TO-DO today? ${data.user_id}</p>
+        <p>What TO-DO today? ${data.user_name}</p>
       </div>
     `);
       $("main").prepend($welcome);

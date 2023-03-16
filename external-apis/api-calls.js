@@ -4,11 +4,32 @@ const apiCalls = function(searchTodo) {
 
   return Promise.all([callYelpCategory(searchTodo), callYelpBiz(searchTodo), callGoogleBooks(searchTodo),callTvmaze(searchTodo),callOpenMovieDatabase(searchTodo), callWalmartDatabase(searchTodo)])
     .then((results) => {
-      console.log(`Results from\n Yelp: ${results[0]},\n YelpBiz: ${results[1]},\n GoogleBook: ${results[2]},\n Tvmaze: ${results[3]},\n OpenMovieDatabase: ${results[4]}, \n Walmart: ${results}`);
+      console.log(`Results from\n Yelp: ${results[0]},\n YelpBiz: ${results[1]},\n GoogleBook: ${results[2]},\n Tvmaze: ${results[3]},\n OpenMovieDatabase: ${results[4]}, \n Walmart: ${results[5]}`);
+
+      console.log(results)
 
       let category_id = 5;
 
       // close matching results required
+
+      //word count
+
+      const searchTodo1 = searchTodo.toLowerCase().split(' ');
+      console.log(searchTodo1)
+      const NumberOfWords = searchTodo1.length
+      console.log('Number of words',NumberOfWords)
+
+
+
+      //if searchterm has  2+ words >>>> googleBooks, tv&movie, shop, eat
+
+
+        //if searchterm has 1 word >>>> shop, eat, tv&Movies, googleBooks
+
+         // for Movie and TV category
+         if (results[3] !== undefined || results[4] !== undefined) {
+          category_id = 2;
+         }
 
       // for Read category
       if (results[2] !== undefined) {
@@ -21,10 +42,10 @@ const apiCalls = function(searchTodo) {
           }
 
           // for Buy category
-          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats', 'Gym'];
+          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats', 'Gym', 'auto repair'];
 
           // for Eat category
-          const eatResults = ['restaurants', 'food', 'gourmet', 'italian', 'vegan', 'mexican', 'burgers'];
+          const eatResults = ['restaurants', 'food', 'gourmet', 'italian', 'vegan', 'mexican', 'burgers', 'bakeries', 'desserts'];
 
           if (buyResults.includes(result)) {
             category_id = 3;
@@ -205,7 +226,7 @@ const callWalmartDatabase = function(searchTodo) {
     });
 };
 
-apiCalls('egg');
+apiCalls('love is in the air');
 
 
 module.exports = { apiCalls };
