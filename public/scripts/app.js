@@ -59,10 +59,10 @@ $(function() {
   // route for updating todo status
   const changeTodoStatus = (todo) => {
     $.post(`/api/lists/${todo.id}/check`)
-    .then((data) => {
-      categoryCounter();
-      loadTodos();
-    });
+      .then((data) => {
+        categoryCounter();
+        loadTodos();
+      });
   };
 
   //create Uncategorized Container
@@ -86,7 +86,7 @@ $(function() {
         $('#uncategorized').append(createUncategorizedContainer());
         uncategorizedTodos.forEach(uncategorizedTodo => {
           $('.uncategorized-container').append(createTodoElement(uncategorizedTodo));
-        })
+        });
       }
     });
   };
@@ -102,19 +102,19 @@ $(function() {
           $(`#tab-${i}`).append(createTodoElement(todo));
 
           // delete todo
-          $(`#${todo.id}`).click(function () {
-            console.log(`clicked ${todo.id}`)
+          $(`#${todo.id}`).click(function() {
+            console.log(`clicked ${todo.id}`);
             $.post(`/api/lists/${todo.id}/delete`)
-            .then((data) => {
-              categoryCounter();
-              loadTodos();
-            });
+              .then((data) => {
+                categoryCounter();
+                loadTodos();
+              });
           });
 
           // listener and route for updating todo status
           $(`.${todo.id} input`).on("click", function() {
             changeTodoStatus(todo);
-          })
+          });
 
         });
 
@@ -133,7 +133,7 @@ $(function() {
               // listener and route for updating todo status
               $(`.${completeTodo.id} input`).on("click", function() {
                 changeTodoStatus(completeTodo);
-              })
+              });
             });
 
           }
@@ -163,7 +163,6 @@ $(function() {
     let category_id = 1;
 
     $.post('/api/lists', { todo_name: todoName, category_id: category_id })
-
       .then((data) => {
         // update category count
         categoryCounter();

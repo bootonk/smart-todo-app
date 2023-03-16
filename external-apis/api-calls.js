@@ -2,9 +2,9 @@ const axios = require('axios');
 
 const apiCalls = function(searchTodo) {
 
-  return Promise.all([callYelpCategory(searchTodo), callYelpBiz(searchTodo), callGoogleBooks(searchTodo),callTvmaze(searchTodo),callOpenMovieDatabase(searchTodo)])
+  return Promise.all([callYelpCategory(searchTodo), callYelpBiz(searchTodo), callGoogleBooks(searchTodo),callTvmaze(searchTodo),callOpenMovieDatabase(searchTodo), callWalmartDatabase(searchTodo)])
     .then((results) => {
-      console.log(`Results from\n Yelp: ${results[0]},\n YelpBiz: ${results[1]},\n GoogleBook: ${results[2]},\n Tvmaze: ${results[3]},\n OpenMovieDatabase: ${results[4]}`);
+      console.log(`Results from\n Yelp: ${results[0]},\n YelpBiz: ${results[1]},\n GoogleBook: ${results[2]},\n Tvmaze: ${results[3]},\n OpenMovieDatabase: ${results[4]}, \n Walmart: ${results}`);
 
       let category_id = 5;
 
@@ -21,7 +21,7 @@ const apiCalls = function(searchTodo) {
           }
 
           // for Buy category
-          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats'];
+          const buyResults = ['fashion', 'shopping', 'sporting goods', 'accessories', 'home cleaning', 'hats', 'Gym'];
 
           // for Eat category
           const eatResults = ['restaurants', 'food', 'gourmet', 'italian', 'vegan', 'mexican', 'burgers'];
@@ -147,6 +147,27 @@ const callOpenMovieDatabase = function(searchTodo) {
       console.log('Cannot find in OpenMovieDatabase');
     });
 
+};
+
+const callWalmartDatabase = function(searchTodo) {
+  const options = {
+    method: 'GET',
+    url: 'https://bluecart.p.rapidapi.com/request',
+    params: {type: 'autocomplete', search_term: `${searchTodo}`},
+    headers: {
+      'X-RapidAPI-Key': `process.env.X-RapidAPI-Key`,
+      'X-RapidAPI-Host': 'bluecart.p.rapidapi.com'
+    }
+  };
+
+  return axios.request(options)
+    .then(function(response) {
+      const results = response.autocomplete_results[0].suggestion;
+      console.log('From Walkmart', { results });
+      return results;
+    }).catch(error => {
+      console.log('Cannot find in Walmart', error.message);
+    });
 };
 
 apiCalls('risotto');
