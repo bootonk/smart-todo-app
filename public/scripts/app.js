@@ -104,12 +104,14 @@ $(function() {
 
           // delete todo
           $(`#${todo.id}`).click(function() {
-            console.log(`clicked ${todo.id}`);
-            $.post(`/api/lists/${todo.id}/delete`)
-              .then((data) => {
-                categoryCounter();
-                loadTodos();
-              });
+            $(`.${todo.id}`).hide('slide', 1000, () => {
+              $.post(`/api/lists/${todo.id}/delete`)
+                .then((data) => {
+                  categoryCounter();
+                  loadTodos();
+                });
+            });
+ 
           });
 
           // listener and route for updating todo status
