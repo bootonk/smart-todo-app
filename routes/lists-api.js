@@ -102,7 +102,8 @@ router.post('/:id/update', (req, res) => {
   const user_id = req.session.user_id;
   const todo_id = req.params.id;
   const category_id = req.body.id;
-  userQueries.updateTodoCategory(category_id, user_id, todo_id)
+  const todo_name = req.body.name;
+  userQueries.updateTodoCategory(category_id, user_id, todo_id, todo_name)
     .then(todo => {
       res.json(todo[category_id]);
     })

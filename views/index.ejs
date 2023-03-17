@@ -44,7 +44,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"
     integrity="sha512-57oZ/vW8ANMjR/KQ6Be9v/+/h6bq9/l3f0Oc7vn6qMqyhvPd1cvKBRWWpzu0QoneImqr2SkmO4MSqU+RpHom3Q=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdn.jsdelivr.net/npm/twilio-client@1.13.0/dist/twilio.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/twilio-client@1.13.0/dist/twilio.min.js"></script>
   <script defer type="text/javascript" src='/scripts/app.js'></script>
   <script defer type="text/javascript" src='/scripts/share-email.js'></script>
   <script defer type="text/javascript" src='/scripts/text-message.js'></script>
@@ -59,16 +59,10 @@
     <div id="nav-logo">grouped 2gether</div>
     <div class="nav-login">
       <div id="nav-login"> Login </div>
-      <button class="logout-button" type="submit" >Logout</button>
+      <button class="logout-button" type="submit">Logout</button>
     </div>
   </nav>
 
-  <!-- Welcome -->
-  <header>
-    <div class="container-fluid">
-      
-    </div>
-  </header>
 
   <!-- Main paige content -->
   <main>
@@ -102,12 +96,12 @@
 
     </section>
 
-      </div>
+    </div>
 
-      <div class="form-check nav-pills" id="tab-1"></div>
-      <div class="form-check nav-pills" id="tab-2"></div>
-      <div class="form-check nav-pills" id="tab-3"></div>
-      <div class="form-check nav-pills" id="tab-4"></div>
+    <div class="form-check nav-pills" id="tab-1"></div>
+    <div class="form-check nav-pills" id="tab-2"></div>
+    <div class="form-check nav-pills" id="tab-3"></div>
+    <div class="form-check nav-pills" id="tab-4"></div>
     </section>
 
     <!-- <section class="show-completed">
@@ -135,37 +129,37 @@
       </div> -->
     </section>
 
-  <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Update Your To-Do</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
-        </div>
-        <form action="">
-          <div class="modal-body">
-            <div class="mb-3">
-              <label for="Input1" class="form-label">Your To-Do</label>
-              <input type="text" class="form-control" id="Input1" value="">
-              <input type="hidden" id="todoId">
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Update Your To-Do</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
+          </div>
+          <form action="">
+            <div class="modal-body">
+              <div class="mb-3">
+                <label for="Input1" class="form-label">Your To-Do</label>
+                <input type="text" class="form-control" id="Input1" name="Input1">
+                <input type="hidden" id="todoId">
+              </div>
+              <select id="updateCategory" class="form-select" aria-label="Default select example">
+                <option selected>Change your Category</option>
+                <option value="3">Shop</option>
+                <option value="2">Watch</option>
+                <option value="4">Eat</option>
+                <option value="1">Read</option>
+              </select>
             </div>
-            <select id="updateCategory" class="form-select" aria-label="Default select example">
-              <option selected>Change your Category</option>
-              <option value="3">Shop</option>
-              <option value="2">Watch</option>
-              <option value="4">Eat</option>
-              <option value="1">Read</option>
-            </select>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            <button id="save" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
-          </div>
-        </form>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button id="save" type="submit" class="btn btn-primary" data-bs-dismiss="modal">Save changes</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
 
   </main>
 
