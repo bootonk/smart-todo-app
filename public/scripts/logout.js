@@ -5,7 +5,11 @@
     $('.logout-button').click(function() {
 
       $.get('/logout', function() {
-        $('#nav-login').hide(); // Hide the div with id="nav-login"
+        $('#nav-login').show(); // Hide the div with id="nav-login"
+        $('.logout-button').hide(); //
+        $('.welcome').hide(); // Hide the div with id="nav-login"
+
+
       });
     });
 

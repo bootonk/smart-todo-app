@@ -260,6 +260,8 @@ $(function() {
     `);
       $("main").prepend($welcome);
     });
+
+    $('#nav-login').hide (); //hide logout button
    
   };
 
