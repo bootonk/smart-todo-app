@@ -106,20 +106,19 @@ $(function () {
 
           body += '\n\n' + listBody;
 
-          // alert if no todos in the selected list
-          if (todosWithCategoryId_1.length === 0 && selectedList === 'all') { 
-            alert('You have no todos in the To Read List');
-          }  if (todosWithCategoryId_2.length === 0 && selectedList === 'all') {
+          //create an alert if one of todosWithCategoryId_1 is empty  (no todos in the list)      
+          if (todosWithCategoryId_1.length === 0) {
+            return alert('You have no todos in the To Read List');
+          } else if (todosWithCategoryId_2.length === 0) {
             alert('You have no todos in the To Watch List');
-          }  if (todosWithCategoryId_3.length === 0 && selectedList === 'all') {
+          } else if (todosWithCategoryId_3.length === 0) {
             alert('You have no todos in the To Shop List');
-          }  if (todosWithCategoryId_4.length === 0 && selectedList === 'all') {
+          } else if (todosWithCategoryId_4.length === 0) {
             alert('You have no todos in the To Eat List');
-          }  if (todosWithCategoryId_5.length === 0 && selectedList === 'all') {
+          } else if (todosWithCategoryId_5.length === 0) {
             alert('You have no todos in the Other List');
-          } 
+          }
 
- 
 
 
           var mailtoLink = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
