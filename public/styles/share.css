@@ -35,7 +35,8 @@
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 4px solid #127475;
 }
 
 .popup-email .close {
@@ -62,7 +63,8 @@
 }
 
 .popup-email input[type="submit"] {
-  background-color: #008CBA;
+  margin-top: 30px;
+  background-color: #579595;
   color: white;
   border: none;
   border-radius: 5px;
@@ -70,13 +72,21 @@
 }
 
 .popup-email input[type="submit"]:hover {
-  background-color: #006B8F;
+  background-color: #127475;
 }
 
 
-
-
 /* POP-UP TEXT MESSAGE */
+.popup-container {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  background-color: #fff3dfbf;
+  display: flex;
+}
 
 .popup-text-message {
   position: fixed;
@@ -85,7 +95,8 @@
   transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
+  border: 4px solid #127475;
 }
 
 .popup-text-message .close {
@@ -93,6 +104,10 @@
   top: 5px;
   right: 5px;
   cursor: pointer;
+}
+
+a:not([href]) {
+  float: right;
 }
 
 .popup-text-message form {
@@ -112,14 +127,23 @@
 }
 
 .popup-text-message input[type="submit"] {
-  background-color: #008CBA;
+  margin-top: 30px;
+  background-color: #579595;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-family: 'Yeseva One', cursive;
 }
 
 .popup-text-message input[type="submit"]:hover {
-  background-color: #006B8F;
+  background-color: #127475;
+}
+
+#list-select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 40px;
+  padding-left: 15px;
 }
 
