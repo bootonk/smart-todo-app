@@ -17,9 +17,10 @@ html {
   color: #545149;
   height: 100%;
   background-color: #fff3df;
-  /* font-size: 25px; */
+  font-size: 20px;
   display: flex;
   font-family: 'Josefin Sans', sans-serif;
+  /* background-image: url('../assets/binding-light.png') */
 }
 
 nav {
@@ -46,5 +47,21 @@ main {
 
 }
 
+.welcome {
+  font-size: 3rem;
+  margin-bottom: 40px;
+}
 
+.name-highlight {
+  color: #F2542D;
+  font-family: 'Yeseva One', cursive;
+}
+
+input:focus {
+  outline: none;
+}
+
+.footer {
+  background-image: url('../assets/footer.png')
+}
 

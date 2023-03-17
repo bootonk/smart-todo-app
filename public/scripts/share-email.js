@@ -106,7 +106,7 @@ $(function () {
 
           body += '\n\n' + listBody;
 
-          //create an alert if one of todosWithCategoryId_x is empty  (no todos in the list)      
+          //create an alert if one of todosWithCategoryId_x is empty  (no todos in the list)
           if (todosWithCategoryId_1.length === 0) {
             return alert('You have no todos in the To Read List');
           } if (todosWithCategoryId_2.length === 0) {
@@ -127,6 +127,7 @@ $(function () {
 
 
           popup.remove();
+          popupContainer.remove();
         });
       });
     });

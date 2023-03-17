@@ -15,10 +15,10 @@ const apiCalls = function(searchTodo) {
 
       const searchTerm = searchTodo.split(' ');
       if (searchTerm.length > 1) {
-        if (results[3] !== undefined || results[4] !== undefined) {
+        if (results[1] !== undefined || results[2] !== undefined) {
           category_id = 2;
           return category_id;
-        } else if (results[2] !== undefined) {
+        } else if (results[0] !== undefined) {
           category_id = 1;
           return category_id;
         } else {

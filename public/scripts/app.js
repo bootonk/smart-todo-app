@@ -268,14 +268,14 @@ $(function() {
       console.log(data);
       let $welcome = $(`
       <div class="welcome">
-        <p>What TO-DO today? ${data.name}</p>
+        <p>Jot it down, <span class="name-highlight">${data.name}</span></p>
       </div>
     `);
       $("main").prepend($welcome);
     });
 
     $('#nav-login').hide (); //hide logout button
-   
+
   };
 
   // $('#nav-login').on('click', function(event) {
@@ -287,7 +287,7 @@ $(function() {
 
 
 
-  
+
   //auto complete
   // const databaseAutoComplete = [
   //   'Love in the Time of Cholera',

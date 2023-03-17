@@ -22,7 +22,7 @@
 }
 
 .ui-tabs .ui-tabs-nav li.ui-tabs-active {
-  margin-left: -3px;
+  margin-left: -4px;
   margin-bottom: -2px;
 }
 
@@ -189,6 +189,18 @@ label {
 .ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active, .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
   border: none;
   background: none;
+}
+
+.ui-helper-reset {
+  font-size: 1.25rem;
+}
+
+[type=checkbox] {
+  height: 18px;
+  width: 18px;
+  border: 2px solid black;
+  display: inline-block;
+  position: relative;
 }
 
 

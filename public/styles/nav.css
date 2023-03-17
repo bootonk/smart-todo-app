@@ -4,13 +4,23 @@
   font-family: 'Yeseva One', cursive;
   justify-content: space-between;
   font-size: 24px;
-  padding: 15px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
   background-color: #F2542D;
   z-index: 1;
 }
 
 .nav-login {
-  margin-right: 80px;
   display: flex;
 }
+
+.logout-button {
+  border: none;
+  background-color: none;
+  background: none;
+  color: white;
+}
+
 
