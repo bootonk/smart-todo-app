@@ -9,21 +9,31 @@ const express = require('express');
 const router  = express.Router();
 const userQueries = require('../db/queries/users');
 
-router.get('/', (req, res) => {
-  userQueries.getUsers()
-    .then(users => {
-      res.json({ users });
-    })
-    .catch(err => {
-      res
-        .status(500)
-        .json({ error: err.message });
-    });
+// router.get('/', (req, res) => {
+//   userQueries.getUsers()
+//     .then(users => {
+//       res.json({ users });
+//     })
+//     .catch(err => {
+//       res
+//         .status(500)
+//         .json({ error: err.message });
+//     });
 
-});
+// });
 
 router.get('/whoami', (req, res) => {
-  res.json({ user_id: req.session.user_id });
+  const user_id =  req.session.user_id;
+  userQueries.getUserNameById(user_id)
+  .then(users => {
+    console.log('User Name',users)
+    res.json(users[0]);
+  })
+  .catch(err => {
+    res
+      .status(500)
+      .json({ error: err.message });
+  });
 });
 
 

@@ -246,12 +246,13 @@ $(function() {
 
   });
 
+  //create Welcome Message
   const createWelcome = () => {
     $.get('/api/users/whoami', (data) => {
       console.log(data);
       let $welcome = $(`
       <div class="welcome">
-        <p>What TO-DO today? ${data.user_name}</p>
+        <p>What TO-DO today? ${data.name}</p>
       </div>
     `);
       $("main").prepend($welcome);
@@ -259,10 +260,7 @@ $(function() {
    
   };
 
-  $('#nav-login').on('click', function(event) {
-    createWelcome();
-    $("main").show("blind", 1000);
-  });
+  createWelcome();
 
 
 
