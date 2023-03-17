@@ -220,31 +220,35 @@ $(function() {
     event.preventDefault();
     const todoIdArr = $(event.target).parent('button').attr('class').replaceAll('-', ' ').split(' '); //find todo id
     const todoId = todoIdArr[3];
-    const todoName = $(event.target).parents().find(`.${todoId} .todo-item label`).text(); //find todo name
+    let todoName = $(event.target).parents().find(`.${todoId} .todo-item label`).text(); //find todo name
     console.log('todoName:', todoName);
     console.log('todoId:', todoId);
-    $('#Input1').val(todoName); //update name
+    $('#Input1').val(todoName); //show name
     $('#todoId').val(todoId); //assign the todoId to modal
+
   });
 
   $('form').on('submit', function(event) {
     event.preventDefault();
-    const newC = $('#updateCategory').find(":selected").val(); //new category id
+    const newCategory = $('#updateCategory').find(":selected").val(); //new category id
+    const newName = $('#Input1').val();
     $('#exampleModal').hide("slide", 1000);  //model move away
     const id = $('#todoId').val();  //
 
     $.ajax({
       type: 'POST',
       url: `/api/lists/${id}/update`,
-      data: { 'id': newC },  //need to make the format match
+      data: { 'id': newCategory, 'name': newName},  //need to make the format match
       dataType: 'html',  //need to fire html, json does not work
       success: () => {
+        $('.todo-item').text($('#Input1').val()); //change the name
         loadTodos();   //refresh the page
         categoryCounter();
       }
     });
 
   });
+
 
   const createWelcome = () => {
     $.get('/api/users/whoami', (data) => {

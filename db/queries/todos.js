@@ -71,9 +71,9 @@ const updateTodoName = (name, user_id, id) => {
   });
 };
 
-const updateTodoCategory = (category_id, user_id, id) => {
-  const values = [`${category_id}`, `${user_id}`, `${id}`];
-  return db.query('UPDATE todos SET category_id = $1 WHERE user_id = $2 AND id = $3 RETURNING *;', values)
+const updateTodoCategory = (category_id, user_id, id, name) => {
+  const values = [`${category_id}`, `${user_id}`, `${id}`, `${name}`];
+  return db.query('UPDATE todos SET category_id = $1, name = $4 WHERE user_id = $2 AND id = $3 RETURNING *;', values)
   .then(data => {
     return data.rows;
   });
