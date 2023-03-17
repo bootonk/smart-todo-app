@@ -231,16 +231,17 @@ $(function() {
   $('form').on('submit', function(event) {
     event.preventDefault();
     const newCategory = $('#updateCategory').find(":selected").val(); //new category id
-    // const newName = $('#Input1').text($('#Input1').text());
+    const newName = $('#Input1').val();
     $('#exampleModal').hide("slide", 1000);  //model move away
     const id = $('#todoId').val();  //
 
     $.ajax({
       type: 'POST',
       url: `/api/lists/${id}/update`,
-      data: { 'id': newCategory, Input1: newName },  //need to make the format match
+      data: { 'id': newCategory, 'name': newName},  //need to make the format match
       dataType: 'html',  //need to fire html, json does not work
       success: () => {
+        $('.todo-item').text($('#Input1').val()); //change the name
         loadTodos();   //refresh the page
         categoryCounter();
       }
@@ -248,9 +249,6 @@ $(function() {
 
   });
 
-  $('form').on('input', () => {
-    $('#Input1').text($('#Input1').text()); //change the name
-  });
 
   const createWelcome = () => {
     $.get('/api/users/whoami', (data) => {
