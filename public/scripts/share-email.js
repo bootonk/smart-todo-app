@@ -106,18 +106,27 @@ $(function () {
 
           body += '\n\n' + listBody;
 
-          //create an alert if one of todosWithCategoryId_x is empty  (no todos in the list)
-          if (todosWithCategoryId_1.length === 0) {
+
+          //create an alert if one of todosWithCategoryId is empty, and only if the user wants to share the this list that is empty
+          if (selectedList === 'list1' && todosWithCategoryId_1.length === 0) {
             return alert('You have no todos in the To Read List');
-          } if (todosWithCategoryId_2.length === 0) {
-            alert('You have no todos in the To Watch List');
-          } if (todosWithCategoryId_3.length === 0) {
-            alert('You have no todos in the To Shop List');
-          } if (todosWithCategoryId_4.length === 0) {
-            alert('You have no todos in the To Eat List');
-          } else if (todosWithCategoryId_5.length === 0) {
-            alert('You have no todos in the Other List');
+          } else if (selectedList === 'list2' && todosWithCategoryId_2.length === 0) {
+            return alert('You have no todos in the To Watch List');
+          } else if (selectedList === 'list3' && todosWithCategoryId_3.length === 0) {
+            return alert('You have no todos in the To Shop List');
+          } else if (selectedList === 'list4' && todosWithCategoryId_4.length === 0) {
+            return alert('You have no todos in the To Eat List');
+          } else if (selectedList === 'list5' && todosWithCategoryId_5.length === 0) {
+            return alert('You have no todos in the Other List');
           }
+
+          //create an alert if the user wants to share all lists, and one of them is empty
+          if (selectedList === 'all' && (todosWithCategoryId_1.length === 0 || todosWithCategoryId_2.length === 0 || todosWithCategoryId_3.length === 0 || todosWithCategoryId_4.length === 0 || todosWithCategoryId_5.length === 0)) {
+            return alert('You have no todos in one of the lists');
+          }
+
+
+
 
 
 
