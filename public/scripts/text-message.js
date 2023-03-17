@@ -2,8 +2,9 @@ $(function () {
 
   $('.text-message').click(function() {
     // Create pop-up
+    const popupContainer = $('<div>').addClass('popup-container');
     const popup = $('<div>').addClass('popup-text-message');
-    const close = $('<a>').addClass('close-text-message').text('x');
+    const close = $('<a>').addClass('close-popup').html('<i class="fa-solid fa-x"></i>');
     const form = $('<form>');
     const label = $('<label>').text('Enter a phone number:');
     const phoneNumberInput = $('<input>').attr('type', 'tel').attr('required', true);
@@ -12,7 +13,7 @@ $(function () {
     const submit = $('<input>').attr('type', 'submit').val('Send');
 
           //dropdown menu
-      
+
           const select = $('<select>').attr('id', 'list-select');
           const label_dropdown = $('<label>').text('Select the list(s):');
           const optionAll = $('<option>').attr('value', 'all').text('All Lists');
@@ -22,7 +23,7 @@ $(function () {
           const option4 = $('<option>').attr('value', 'list4').text('To Eat List');
           const option5 = $('<option>').attr('value', 'list5').text('Other List');
           select.append(label_dropdown, optionAll, option1, option2, option3, option4, option5);
-  
+
               //Add a variable to store the selected list value and update it when the select element changes:
               let selectedList = 'all'; // default value
               select.on('change', function() {
@@ -32,7 +33,8 @@ $(function () {
     // Append pop-up to page
     form.append(label, phoneNumberInput, select, label_messageTextarea, messageTextarea, submit);
     popup.append(close, form);
-    $('body').append(popup);
+    $('body').append(popupContainer);
+    $('.popup-container').append(popup);
 
     //active draggable function to pop-up
     popup.draggable({
@@ -42,6 +44,7 @@ $(function () {
     //set close pop-up
     close.click(function() {
       popup.remove();
+      popupContainer.remove();
     });
 
     // Send text-message when form is submitted
@@ -54,10 +57,10 @@ $(function () {
 
       //build the text with all lists
       $.get(`api/lists/share`, (todos) => {
-      
+
         let body = "";
         body += message;
-      
+
         let list1 = "📖 TO READ LIST 📖:\n";
         let list2 = "📺 TO WATCH  📺:\n";
         let list3 = "🛍️ TO SHOP LIST 🛍️:\n";
@@ -86,7 +89,7 @@ $(function () {
         });
 
         var listBody = '';
-        
+
         if (selectedList === 'all') {
           listBody += list1 + '\n' + list2 + '\n' + list3 + '\n' + list4 + '\n' + list5;
         } else if (selectedList === 'list1') {
@@ -100,22 +103,22 @@ $(function () {
         } else if (selectedList === 'list5') {
           listBody += list5;
         }
-        
+
         body += '\n\n' + listBody;
-      
-      
+
+
           $.get('/text-message', {phoneNumber, body})
           .then(console.log);
-      
+
           popup.remove();
-        
+
       });
-      
+
       // use the phoneNumber and message variables to send the text message
-      
+
     });
 
-    
+
   });
 });
 

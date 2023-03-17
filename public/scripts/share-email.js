@@ -5,17 +5,18 @@ $(function () {
 
     $('.email').click(function() {
       // Create pop-up
+      const popupContainer = $('<div>').addClass('popup-container');
       const popup = $('<div>').addClass('popup-email');
-      const close = $('<a>').addClass('close').text('x');
+      const close = $('<a>').addClass('close-popup').html('<i class="fa-solid fa-x"></i>');
       const form = $('<form>');
       const label = $('<label>').text('Enter email address:');
       const emailInput = $('<input>').attr('type', 'email').attr('required', true);
       const label_messageTextarea = $('<label>').text('Enter your message');
       const messageTextarea = $('<textarea>').attr('required', true);
       const submit = $('<input>').attr('type', 'submit').val('Send');
-      
+
             //dropdown menu
-      
+
         const select = $('<select>').attr('id', 'list-select');
         const label_dropdown = $('<label>').text('Select the list(s)');
         const optionAll = $('<option>').attr('value', 'all').text('All Lists');
@@ -31,11 +32,12 @@ $(function () {
             select.on('change', function() {
               selectedList = $(this).val();
             });
-      
+
       // Append pop-up to page
       form.append(label, emailInput, select, label_messageTextarea,  messageTextarea, submit);
       popup.append(close, form);
-      $('body').append(popup);
+      $('body').append(popupContainer);
+      $('.popup-container').append(popup);
 
       //active draggable function to pop-up
       popup.draggable({
@@ -45,12 +47,13 @@ $(function () {
       //set close pop-up
       close.click(function() {
         popup.remove();
+        popupContainer.remove();
       });
-      
+
       // Send email when form is submitted
-      form.on('submit', function(event) {        
+      form.on('submit', function(event) {
         event.preventDefault();
-        
+
         $.get(`api/lists/share`, (todos) => {
         var recipient = emailInput.val();
         var subject = `My todo List\n`;
@@ -86,7 +89,7 @@ $(function () {
           var body = messageTextarea.val();
           var subject = `My todo List\n`;
           var listBody = '';
-          
+
           if (selectedList === 'all') {
             listBody += list1 + '\n' + list2 + '\n' + list3 + '\n' + list4 + '\n' + list5;
           } else if (selectedList === 'list1') {
@@ -100,28 +103,28 @@ $(function () {
           } else if (selectedList === 'list5') {
             listBody += list5;
           }
-          
+
           body += '\n\n' + listBody;
-          
+
           var mailtoLink = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-          
+
           window.location.href = mailtoLink;
-          
-          
+
+
           popup.remove();
         });
       });
     });
-    
-    
 
 
-    
+
+
+
     // const email = emailInput.val();
     // const message = messageTextarea.val();
 
     // //*php file saved as send-email.php in /scripts*\\
-  
+
     // // Send AJAX request to PHP file
     // $.ajax({
     //   url: '/scripts/send-email.php',
