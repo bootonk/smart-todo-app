@@ -184,6 +184,19 @@ $(function() {
     let todoName = $('#new-todo-input').val();
     let category_id = 1;
 
+    //create an error messsage element if there is no input
+    if (todoName === '') {
+      $('#new-todo-input').addClass('error');
+      $('#new-todo-input').attr('placeholder', 'Please enter a todo');
+      return;
+    }
+
+    //remove error message if there is input
+    $('#new-todo-input').removeClass('error');
+    $('#new-todo-input').attr('placeholder', 'Add a todo');
+
+
+
     $.post('/api/lists', { todo_name: todoName, category_id: category_id })
       .then((data) => {
         // update category count

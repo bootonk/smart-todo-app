@@ -29,3 +29,7 @@ button.addItemButton {
   transition: all 0.3s ease-in-out;
   font-size: 1em;
 }
+
+.error :placeholder-shown {
+  text-size-adjust: 100%;
+}
